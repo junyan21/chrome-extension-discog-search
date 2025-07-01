@@ -8,6 +8,7 @@ export default defineConfig({
         background: 'src/background.ts',
         content: 'src/content.ts',
         options: 'public/options.html',
+        offscreen: 'public/offscreen.html',
       },
       output: {
         entryFileNames: `assets/[name].js`,

@@ -94,3 +94,81 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Loading spinner */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #646cff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Progress container */
+#progress {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(100, 108, 255, 0.1);
+  border-radius: 8px;
+  margin: 10px 0;
+  min-width: 300px;
+}
+
+#progressMessage {
+  color: #646cff;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* Result styling */
+#result {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+#result pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+#result a {
+  color: #646cff;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+#result a:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  #progress {
+    background-color: rgba(100, 108, 255, 0.2);
+  }
+  
+  #result pre {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .spinner {
+    border-color: #333;
+    border-top-color: #646cff;
+  }
+}

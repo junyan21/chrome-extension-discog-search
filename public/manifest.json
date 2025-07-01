@@ -13,10 +13,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["assets/content.js"]
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["assets/content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
     }
   ],
-  "permissions": ["activeTab", "scripting", "storage"],
-  "host_permissions": ["https://generativelanguage.googleapis.com/"]
+  "permissions": ["activeTab", "scripting", "storage", "offscreen"],
+  "host_permissions": ["https://generativelanguage.googleapis.com/", "https://www.google.com/", "https://www.discogs.com/"]
 }
