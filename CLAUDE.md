@@ -16,16 +16,19 @@ The extension follows a simplified, dependency-light architecture designed for m
 ## Component Architecture
 
 ### 1. Popup UI (`src/main.ts`)
-**Role**: User interface and orchestration
+**Role**: User interface and orchestration with enhanced vinyl detection display
 - Handles user interactions and UI state management
 - Orchestrates communication between content scripts and background script
 - Implements fallback content script injection for existing tabs
-- Provides progress feedback and error handling
+- Provides progress feedback with turntable animation and error handling
+- Displays vinyl-only status with visual indicators
 
 **Key Functions**:
 - `extractContentDirectly()`: Direct communication with content scripts
 - `isRestrictedUrl()`: URL validation for extension compatibility
-- Progress tracking and user feedback
+- Progress tracking and user feedback with spinner animation control
+- Visual format indicator rendering (vinyl-only vs multi-format)
+- Available formats list display
 
 ### 2. Content Script (`src/content.ts`)
 **Role**: DOM content extraction
@@ -40,16 +43,19 @@ The extension follows a simplified, dependency-light architecture designed for m
 - Direct text extraction using `textContent` and `innerText`
 
 ### 3. Background Script (`src/background.ts`)
-**Role**: AI processing and external API coordination
-- Handles Google Gemini AI communication
+**Role**: AI processing and external API coordination with format analysis
+- Handles Google Gemini AI communication with enhanced prompts
 - Performs Google search for Discogs URLs
 - Manages Discogs page fetching and processing
 - Coordinates with offscreen document for HTML parsing
+- Analyzes format availability (vinyl, CD, digital, etc.)
 
 **Key Functions**:
-- LLM prompt engineering for music information extraction
+- Enhanced LLM prompt engineering for music information and format extraction
+- Vinyl-only detection using AI analysis of Discogs content
+- Format categorization (vinyl formats vs non-vinyl formats)
 - Google search result parsing for Discogs URL discovery
-- Progress messaging to popup UI
+- Progress messaging to popup UI with detailed status updates
 - Error handling and fallback mechanisms
 
 ### 4. Offscreen Document (`src/offscreen.ts`)
@@ -67,16 +73,21 @@ The extension follows a simplified, dependency-light architecture designed for m
 ## Data Flow
 
 ```
-1. User clicks extension icon
-2. Popup validates current tab URL
+1. User clicks extension icon (record-themed design)
+2. Popup validates current tab URL and shows turntable animation
 3. Content script extracts page content (fallback injection if needed)
 4. Background receives content and processes with Gemini AI
 5. AI extracts artist/title information with noise filtering
 6. Background searches Google for Discogs URLs
 7. Background fetches Discogs page content
 8. Offscreen document parses Discogs HTML
-9. Background processes Discogs content with AI for detailed info
-10. Results displayed in popup UI
+9. Background processes Discogs content with AI for detailed info + format analysis
+10. AI determines vinyl-only status and available formats
+11. Results displayed in popup UI with visual format indicators:
+    - Vinyl-only status (green/red indicators)
+    - Available formats list
+    - JSON data with isVinylOnly and availableFormats fields
+12. Progress animation stops on completion
 ```
 
 ## Key Technical Decisions
@@ -107,7 +118,29 @@ The extension follows a simplified, dependency-light architecture designed for m
 ### LLM Prompt Engineering
 **Integrated Content Processing**: Combined content extraction and music information identification in a single LLM call for efficiency.
 
+**Enhanced Format Analysis**: Extended LLM prompts to analyze Discogs pages for format availability:
+- Vinyl formats: Vinyl, LP, 12", 7", 45 RPM, EP (vinyl), Album (vinyl), Single (vinyl)
+- Non-vinyl formats: CD, Digital, Cassette, Tape, MP3, FLAC, Streaming
+- Boolean isVinylOnly determination logic
+- Available formats array extraction
+
 **Noise Filtering**: LLM instructions specifically address common web page noise (navigation, ads, widgets).
+
+### Vinyl Detection Implementation
+**Format Categorization Logic**: AI-powered analysis to distinguish between vinyl and non-vinyl formats with specific keyword recognition.
+
+**Response Structure Enhancement**: Extended JSON response to include:
+```json
+{
+  "artist": "Artist Name",
+  "title": "Album Title", 
+  "year": 2023,
+  "identifiers": "CAT-123",
+  "url": "https://www.discogs.com/release/123",
+  "isVinylOnly": true,
+  "availableFormats": ["Vinyl", "LP", "12\""]
+}
+```
 
 ## Development Commands
 
@@ -147,13 +180,57 @@ The extension follows a simplified, dependency-light architecture designed for m
 - Validate API key configuration and error states
 - Check content extraction quality and length limits
 
+## UI/UX Enhancements
+
+### Turntable Animation Implementation
+**CSS-Only Animation**: Pure CSS3 implementation for smooth performance:
+- Record player with spinning vinyl disc
+- Realistic gradients and shadows for depth
+- Multiple groove circles for authentic appearance
+- Rotation animation with 1.8s duration (realistic RPM speed)
+- Automatic stopping on process completion
+
+**Visual Components**:
+```css
+.record-player → Container with relative positioning
+.record → Main vinyl disc with radial gradients
+.record-grooves → Concentric circles simulating record grooves
+.record::before → Center label with extension theme color
+.record::after → Center spindle hole
+```
+
+### Format Indicator System
+**Visual Status Display**: Color-coded indicators for immediate format recognition:
+- Green background: "🎵 VINYL ONLY RELEASE" 
+- Red background: "📀 MULTIPLE FORMATS AVAILABLE"
+- Format list display: Available formats as comma-separated list
+- Prominent placement above JSON data
+
+### Extension Icon Design
+**SVG-to-PNG Workflow**: macOS native toolchain for icon generation:
+1. Master SVG design (`icon.svg`) with record player theme
+2. Size-optimized variants for different dimensions
+3. `qlmanage` command conversion to PNG: `qlmanage -t -s [SIZE] -o [DIR] [SVG]`
+4. Manifest integration with proper path configuration
+5. Chrome compatibility with PNG format requirement
+
+**Design Elements**:
+- Black vinyl disc with realistic gradients
+- Blue center label (extension theme color)
+- Concentric grooves for texture
+- Optimized for 16x16 pixel visibility
+- Full canvas utilization for maximum clarity
+
 ## Future Enhancement Opportunities
 
-1. **Caching**: Implement result caching to reduce API calls
-2. **Language Support**: Extend LLM prompts for multiple languages
-3. **Content Optimization**: Improve content extraction algorithms
-4. **User Preferences**: Add customization options for search behavior
-5. **Batch Processing**: Support multiple music items on single page
+1. **Advanced Format Detection**: Expand format recognition to include regional variants
+2. **Format Preferences**: User settings for preferred format highlighting  
+3. **Caching**: Implement result caching to reduce API calls
+4. **Language Support**: Extend LLM prompts for multiple languages
+5. **Content Optimization**: Improve content extraction algorithms
+6. **User Preferences**: Add customization options for search behavior
+7. **Batch Processing**: Support multiple music items on single page
+8. **Animation Themes**: Alternative progress animations (CD, cassette, etc.)
 
 ## Security Considerations
 

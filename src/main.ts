@@ -231,6 +231,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const processingTime = ((endTime - startTime) / 1000).toFixed(2);
           console.log(`[Main] Processing completed in ${processingTime} seconds`);
           updateProgress(`処理完了！ (${processingTime}秒)`);
+          
+          // プログレスインジケーターを停止
+          progressDiv.style.display = 'none';
         } catch (parseError: any) {
           console.error('[Main] JSON Parse Error:', parseError);
           resultDiv.textContent = `Error parsing LLM response: ${parseError.message || parseError}\nRaw response: ${llmResponse.result}`;

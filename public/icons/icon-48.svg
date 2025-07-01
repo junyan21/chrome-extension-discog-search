@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <radialGradient id="recordGradient48" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#333;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="labelGradient48" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" style="stop-color:#7c7cff;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#646cff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a54d1;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Record base with shadow -->
+  <circle cx="24" cy="25" r="22" fill="#000" opacity="0.15"/>
+  
+  <!-- Main record -->
+  <circle cx="24" cy="24" r="22" fill="url(#recordGradient48)" stroke="#000" stroke-width="1"/>
+  
+  <!-- Record grooves -->
+  <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+  <circle cx="24" cy="24" r="13.5" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+  <circle cx="24" cy="24" r="9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+  
+  <!-- Center label -->
+  <circle cx="24" cy="24" r="5" fill="url(#labelGradient48)" stroke="#4a54d1" stroke-width="0.5"/>
+  
+  <!-- Center hole -->
+  <circle cx="24" cy="24" r="1.5" fill="#1a1a1a"/>
+  
+  <!-- Light reflection -->
+  <path d="M 12 12 A 12 12 0 0 1 24 8 A 12 12 0 0 1 36 12" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" opacity="0.6"/>
+</svg>
