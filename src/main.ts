@@ -201,7 +201,23 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           const parsedJson = JSON.parse(jsonString);
-          let displayContent = `<pre>${JSON.stringify(parsedJson, null, 2)}</pre>`;
+          
+          // Vinyl-only status display
+          let displayContent = '';
+          if (parsedJson.isVinylOnly !== undefined) {
+            const vinylStatus = parsedJson.isVinylOnly ? 
+              '<div style="background: #2d5a2d; color: white; padding: 10px; margin: 5px 0; border-radius: 5px; font-weight: bold;">🎵 VINYL ONLY RELEASE</div>' :
+              '<div style="background: #5a2d2d; color: white; padding: 10px; margin: 5px 0; border-radius: 5px; font-weight: bold;">📀 MULTIPLE FORMATS AVAILABLE</div>';
+            displayContent += vinylStatus;
+          }
+          
+          // Available formats display
+          if (parsedJson.availableFormats && Array.isArray(parsedJson.availableFormats) && parsedJson.availableFormats.length > 0) {
+            displayContent += `<div style="margin: 5px 0;"><strong>Available Formats:</strong> ${parsedJson.availableFormats.join(', ')}</div>`;
+          }
+          
+          // JSON data display
+          displayContent += `<pre>${JSON.stringify(parsedJson, null, 2)}</pre>`;
 
           // URLが存在すればリンクとして追加
           if (parsedJson.url) {

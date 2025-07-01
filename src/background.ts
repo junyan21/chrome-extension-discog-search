@@ -193,7 +193,24 @@ ${content}`;
           await sendProgress('詳細情報を抽出中...');
 
           // 抽出したDiscogsコンテンツをLLMに渡し、最終的な情報を取得
-          const finalPrompt = `Given the following text from a Discogs page (URL: ${discogsUrl}), extract the artist, album/release title, year, and any relevant catalog numbers or identifiers. Also, include the URL of the page. Format the output as a JSON object with keys: artist, title, year, identifiers, url. If a piece of information is not found, use null. Example: { "artist": "Artist Name", "title": "Album Title", "year": 2023, "identifiers": "CAT-123", "url": "https://www.discogs.com/release/123-Artist-Title" }\n\nText: ${discogsContent}`;
+          const finalPrompt = `Given the following text from a Discogs page (URL: ${discogsUrl}), extract the artist, album/release title, year, any relevant catalog numbers or identifiers, and analyze the available formats.
+
+Pay special attention to format information such as:
+- Vinyl formats: Vinyl, LP, 12", 7", 45 RPM, EP (vinyl), Album (vinyl), Single (vinyl)
+- Non-vinyl formats: CD, Digital, Cassette, Tape, MP3, FLAC, Streaming
+
+Determine if this release is vinyl-only (only available in vinyl formats) or if it has other format options.
+
+Format the output as a JSON object with keys: artist, title, year, identifiers, url, isVinylOnly, availableFormats.
+
+- isVinylOnly: boolean (true if only vinyl formats are available, false if other formats exist)
+- availableFormats: array of strings listing all detected formats
+
+Example: { "artist": "Artist Name", "title": "Album Title", "year": 2023, "identifiers": "CAT-123", "url": "https://www.discogs.com/release/123-Artist-Title", "isVinylOnly": true, "availableFormats": ["Vinyl", "LP", "12\""] }
+
+If a piece of information is not found, use null for strings/numbers or empty array for availableFormats.
+
+Text: ${discogsContent}`;
 
           console.log('[Background] Extracting detailed info from Discogs page');
           const finalResult = await model.generateContent(finalPrompt);
