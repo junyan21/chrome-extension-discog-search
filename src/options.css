@@ -1,0 +1,151 @@
+/* Material Design 3 Floating Label Input Animation */
+.floating-label-input {
+  position: relative;
+}
+
+.floating-label-input input:focus + label,
+.floating-label-input input:not(:placeholder-shown) + label {
+  transform: translateY(-24px) scale(0.75);
+  color: var(--md-sys-color-primary);
+}
+
+/* Enhanced focus states */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.12);
+}
+
+/* Material Design elevation shadows */
+.elevation-1 {
+  box-shadow: 
+    0px 1px 3px 0px rgba(0, 0, 0, 0.30),
+    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+}
+
+.elevation-2 {
+  box-shadow: 
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15),
+    0px 8px 24px 4px rgba(0, 0, 0, 0.30);
+}
+
+/* Button hover effects */
+.md-button {
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.md-button:hover {
+  transform: translateY(-1px);
+}
+
+.md-button:active {
+  transform: translateY(0);
+}
+
+/* Ripple effect for buttons */
+.md-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.md-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.md-button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Input field enhancements */
+.md-textfield {
+  position: relative;
+}
+
+.md-textfield input {
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.md-textfield input:focus {
+  transform: scale(1.02);
+}
+
+/* Status message animations */
+.status-message {
+  animation: slideIn 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading state animations */
+.loading {
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .md-button {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .md-textfield input {
+    border-width: 2px;
+  }
+  
+  .md-button {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

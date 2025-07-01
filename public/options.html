@@ -1,17 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Discog Search Options</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../src/style.css">
+  <link rel="stylesheet" href="../src/options.css">
+  <style>
+    /* Material Design 3 Color System */
+    :root {
+      --md-sys-color-primary: #6750a4;
+      --md-sys-color-on-primary: #ffffff;
+      --md-sys-color-primary-container: #eaddff;
+      --md-sys-color-on-primary-container: #21005d;
+      --md-sys-color-surface: #fffbfe;
+      --md-sys-color-on-surface: #1c1b1f;
+      --md-sys-color-surface-variant: #e7e0ec;
+      --md-sys-color-on-surface-variant: #49454f;
+      --md-sys-color-outline: #79747e;
+      --md-sys-color-outline-variant: #cac4d0;
+      --md-sys-color-surface-container: #f3edf7;
+      --md-sys-color-surface-container-high: #ede6f0;
+      --md-sys-color-error: #ba1a1a;
+      --md-sys-color-on-error: #ffffff;
+      --md-sys-color-success: #386a20;
+      --md-sys-color-on-success: #ffffff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --md-sys-color-primary: #d0bcff;
+        --md-sys-color-on-primary: #371e73;
+        --md-sys-color-primary-container: #4f378b;
+        --md-sys-color-on-primary-container: #eaddff;
+        --md-sys-color-surface: #141218;
+        --md-sys-color-on-surface: #e6e1e5;
+        --md-sys-color-surface-variant: #49454f;
+        --md-sys-color-on-surface-variant: #cac4d0;
+        --md-sys-color-outline: #938f99;
+        --md-sys-color-outline-variant: #49454f;
+        --md-sys-color-surface-container: #211f26;
+        --md-sys-color-surface-container-high: #2b2930;
+        --md-sys-color-error: #ffb4ab;
+        --md-sys-color-on-error: #690005;
+        --md-sys-color-success: #7dd957;
+        --md-sys-color-on-success: #0f2000;
+      }
+    }
+  </style>
 </head>
-<body>
-  <h1>Options</h1>
-  <div>
-    <label for="apiKey">Gemini API Key:</label>
-    <input type="text" id="apiKey" size="50">
+<body class="bg-[var(--md-sys-color-surface)] text-[var(--md-sys-color-on-surface)] min-h-screen">
+  <div class="container mx-auto max-w-md p-6">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div class="w-16 h-16 mx-auto mb-4 bg-[var(--md-sys-color-primary-container)] rounded-full flex items-center justify-center">
+        <svg class="w-8 h-8 text-[var(--md-sys-color-on-primary-container)]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-medium text-[var(--md-sys-color-on-surface)] mb-2">Discog Search</h1>
+      <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">Configure your search preferences</p>
+    </div>
+
+    <!-- Card Container -->
+    <div class="bg-[var(--md-sys-color-surface-container)] rounded-xl p-6 shadow-sm border border-[var(--md-sys-color-outline-variant)]">
+      <!-- API Key Input Section -->
+      <div class="space-y-6">
+        <div class="relative">
+          <div class="relative">
+            <input
+              type="password"
+              id="apiKey"
+              class="peer w-full px-4 pt-6 pb-2 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline)] rounded-lg text-[var(--md-sys-color-on-surface)] focus:outline-none focus:border-[var(--md-sys-color-primary)] focus:border-2 transition-all duration-200"
+              placeholder=" "
+            />
+            <label
+              for="apiKey"
+              class="absolute left-4 top-4 text-[var(--md-sys-color-on-surface-variant)] text-sm transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--md-sys-color-primary)] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[var(--md-sys-color-primary)]"
+            >
+              Gemini API Key
+            </label>
+            <button
+              type="button"
+              id="togglePassword"
+              class="absolute right-3 top-4 text-[var(--md-sys-color-on-surface-variant)] hover:text-[var(--md-sys-color-on-surface)] transition-colors duration-200"
+            >
+              <svg id="showIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              <svg id="hideIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L8.464 8.464M19.071 4.929L4.929 19.071"/>
+              </svg>
+            </button>
+          </div>
+          <p class="text-xs text-[var(--md-sys-color-on-surface-variant)] mt-2 leading-relaxed">
+            Your API key is securely stored locally and used only for music search functionality. 
+            <a href="https://makersuite.google.com/app/apikey" target="_blank" class="text-[var(--md-sys-color-primary)] hover:underline">
+              Get your Gemini API key
+            </a>
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-3 pt-4">
+          <button
+            id="save"
+            class="flex-1 bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] py-3 px-6 rounded-full font-medium hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-primary)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Save Configuration
+          </button>
+          <button
+            id="test"
+            class="px-6 py-3 border border-[var(--md-sys-color-outline)] text-[var(--md-sys-color-primary)] rounded-full font-medium hover:bg-[var(--md-sys-color-surface-container-high)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-primary)] focus:ring-offset-2"
+          >
+            Test
+          </button>
+        </div>
+
+        <!-- Status Message -->
+        <div id="status" class="hidden p-4 rounded-lg text-sm font-medium"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-8">
+      <p class="text-xs text-[var(--md-sys-color-on-surface-variant)]">
+        Version 1.0.0 • 
+        <a href="https://github.com/junyan21/chrome-extension-discog-search" target="_blank" class="text-[var(--md-sys-color-primary)] hover:underline">
+          View on GitHub
+        </a>
+      </p>
+    </div>
   </div>
-  <button id="save">Save</button>
-  <div id="status"></div>
+
   <script type="module" src="../src/options.ts"></script>
 </body>
 </html>
