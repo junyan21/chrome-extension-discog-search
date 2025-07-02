@@ -55,16 +55,19 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         console.log(`[Background] Content URL: ${url}`);
         console.log(`[Background] Content length: ${content.length} characters`);
         
-        await sendProgress('APIキーを確認中...');
-        const result = await chrome.storage.local.get(['geminiApiKey']);
+        await sendProgress('APIキーとモデル設定を確認中...');
+        const result = await chrome.storage.local.get(['geminiApiKey', 'selectedGeminiModel']);
         const apiKey = result.geminiApiKey;
+        const selectedModel = result.selectedGeminiModel;
 
         if (!apiKey) {
           responseData = { success: false, message: 'Gemini API Key not set. Please set it in the extension options.' };
+        } else if (!selectedModel) {
+          responseData = { success: false, message: 'Gemini model not selected. Please select a model in the extension options.' };
         } else {
           const genAI = new GoogleGenerativeAI(apiKey);
-          const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite-preview-06-17" });
-          console.log('[Background] Gemini AI model initialized');
+          const model = genAI.getGenerativeModel({ model: selectedModel });
+          console.log(`[Background] Using Gemini model: ${selectedModel}`);
 
           // ページコンテンツから音楽情報を抽出（ノイズ除去も含む）
           await sendProgress('ページから音楽情報を抽出中...');

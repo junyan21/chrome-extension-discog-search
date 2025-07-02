@@ -103,6 +103,38 @@
           </p>
         </div>
 
+        <!-- Model Selection Section -->
+        <div class="relative">
+          <div class="relative">
+            <select
+              id="modelSelect"
+              class="w-full px-4 pt-6 pb-2 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline)] rounded-lg text-[var(--md-sys-color-on-surface)] focus:outline-none focus:border-[var(--md-sys-color-primary)] focus:border-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled
+            >
+              <option value="">Select a model...</option>
+            </select>
+            <label
+              for="modelSelect"
+              class="absolute left-4 top-2 text-xs text-[var(--md-sys-color-primary)]"
+            >
+              Gemini Model
+            </label>
+            <button
+              type="button"
+              id="refreshModels"
+              class="absolute right-3 top-4 text-[var(--md-sys-color-on-surface-variant)] hover:text-[var(--md-sys-color-on-surface)] transition-colors duration-200 disabled:opacity-50"
+              disabled
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+            </button>
+          </div>
+          <p class="text-xs text-[var(--md-sys-color-on-surface-variant)] mt-2 leading-relaxed">
+            Choose the Gemini model to use for analysis. The first model in the list is selected by default.
+          </p>
+        </div>
+
         <!-- Action Buttons -->
         <div class="flex gap-3 pt-4">
           <button
