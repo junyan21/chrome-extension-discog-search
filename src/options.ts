@@ -10,17 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const hideIcon = document.getElementById('hideIcon') as SVGElement;
 
   // Load saved API key and selected model
-  chrome.storage.local.get(['geminiApiKey', 'selectedGeminiModel'], (result) => {
+  chrome.storage.local.get(['geminiApiKey', 'selectedGeminiModel'], async (result) => {
     if (result.geminiApiKey) {
       apiKeyInput.value = result.geminiApiKey;
-      // Load models when API key is available
-      loadAvailableModels();
-    }
-    if (result.selectedGeminiModel) {
-      // Will be set after models are loaded
-      setTimeout(() => {
+      // Load models when API key is available, then set the selected model
+      if (result.selectedGeminiModel) {
+        await loadAvailableModels();
         modelSelect.value = result.selectedGeminiModel;
-      }, 100);
+      } else {
+        await loadAvailableModels();
+      }
     }
   });
 
@@ -32,16 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
     hideIcon.classList.toggle('hidden', isPassword);
   });
 
-  // Load models when API key changes
+  // Load models when API key changes (with debouncing to prevent excessive API calls)
+  let debounceTimer: number;
   apiKeyInput.addEventListener('input', () => {
-    const apiKey = apiKeyInput.value.trim();
-    if (apiKey) {
-      loadAvailableModels();
-    } else {
-      modelSelect.disabled = true;
-      refreshModelsButton.disabled = true;
-      modelSelect.innerHTML = '<option value="">Select a model...</option>';
-    }
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const apiKey = apiKeyInput.value.trim();
+      if (apiKey) {
+        loadAvailableModels();
+      } else {
+        modelSelect.disabled = true;
+        refreshModelsButton.disabled = true;
+        modelSelect.innerHTML = '<option value="">Select a model...</option>';
+      }
+    }, 500); // 500ms debounce delay
   });
 
   // Show status message with appropriate styling
@@ -63,13 +66,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Load available models dynamically
-  const loadAvailableModels = async () => {
+  // Load available models dynamically with caching
+  const loadAvailableModels = async (forceRefresh = false) => {
     const apiKey = apiKeyInput.value.trim();
     
     if (!apiKey) {
       showStatus('Please enter an API key first', 'error');
       return;
+    }
+
+    // Check cache first (unless forced refresh)
+    if (!forceRefresh) {
+      try {
+        const cached = await new Promise<{modelCache?: {models: any[], timestamp: number, apiKeyHash: string}}>((resolve) => {
+          chrome.storage.local.get(['modelCache'], resolve);
+        });
+        
+        if (cached.modelCache) {
+          const { models, timestamp, apiKeyHash } = cached.modelCache;
+          const cacheAge = Date.now() - timestamp;
+          const currentApiKeyHash = btoa(apiKey).slice(0, 8); // Simple hash for cache validation
+          
+          // Use cache if less than 1 hour old and same API key
+          if (cacheAge < 60 * 60 * 1000 && apiKeyHash === currentApiKeyHash && models.length > 0) {
+            populateModelDropdown(models);
+            showStatus(`✓ Loaded ${models.length} compatible models (cached)`, 'success');
+            return;
+          }
+        }
+      } catch (error) {
+        console.log('Cache read failed, fetching fresh models');
+      }
     }
 
     try {
@@ -95,24 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       
-      // Clear and populate model dropdown
-      modelSelect.innerHTML = '';
+      // Cache the models
+      try {
+        const modelCache = {
+          models: compatibleModels,
+          timestamp: Date.now(),
+          apiKeyHash: btoa(apiKey).slice(0, 8)
+        };
+        chrome.storage.local.set({ modelCache });
+      } catch (error) {
+        console.error('Failed to cache models:', error);
+      }
       
-      compatibleModels.forEach((model, index) => {
-        const option = document.createElement('option');
-        option.value = model.name;
-        option.textContent = model.name;
-        modelSelect.appendChild(option);
-        
-        // Select first model as default
-        if (index === 0) {
-          option.selected = true;
-        }
-      });
-      
-      modelSelect.disabled = false;
-      refreshModelsButton.disabled = false;
-      
+      populateModelDropdown(compatibleModels);
       showStatus(`✓ Loaded ${compatibleModels.length} compatible models`, 'success');
       
     } catch (error) {
@@ -122,9 +144,30 @@ document.addEventListener('DOMContentLoaded', () => {
       refreshModelsButton.disabled = true;
     }
   };
+  
+  // Helper function to populate model dropdown
+  const populateModelDropdown = (models: any[]) => {
+    // Clear and populate model dropdown
+    modelSelect.innerHTML = '';
+    
+    models.forEach((model, index) => {
+      const option = document.createElement('option');
+      option.value = model.name;
+      option.textContent = model.name;
+      modelSelect.appendChild(option);
+      
+      // Select first model as default
+      if (index === 0) {
+        option.selected = true;
+      }
+    });
+    
+    modelSelect.disabled = false;
+    refreshModelsButton.disabled = false;
+  };
 
-  // Refresh models button
-  refreshModelsButton.addEventListener('click', loadAvailableModels);
+  // Refresh models button (force refresh to bypass cache)
+  refreshModelsButton.addEventListener('click', () => loadAvailableModels(true));
 
   // Test API key functionality with dynamic model selection
   testButton.addEventListener('click', async () => {
@@ -186,14 +229,26 @@ document.addEventListener('DOMContentLoaded', () => {
     saveButton.disabled = true;
     saveButton.textContent = 'Saving...';
 
-    chrome.storage.local.set({ 
-      geminiApiKey: apiKey,
-      selectedGeminiModel: selectedModel
-    }, () => {
+    try {
+      chrome.storage.local.set({ 
+        geminiApiKey: apiKey,
+        selectedGeminiModel: selectedModel
+      }, () => {
+        if (chrome.runtime.lastError) {
+          console.error('Storage error:', chrome.runtime.lastError);
+          showStatus('Failed to save configuration', 'error');
+        } else {
+          showStatus(`✓ Configuration saved! Using model: ${selectedModel}`, 'success');
+        }
+        saveButton.disabled = false;
+        saveButton.textContent = 'Save Configuration';
+      });
+    } catch (error) {
+      console.error('Failed to save configuration:', error);
+      showStatus('Failed to save configuration', 'error');
       saveButton.disabled = false;
       saveButton.textContent = 'Save Configuration';
-      showStatus(`✓ Configuration saved! Using model: ${selectedModel}`, 'success');
-    });
+    }
   });
 
   // Auto-save on Enter key

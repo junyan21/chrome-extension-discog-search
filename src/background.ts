@@ -66,8 +66,36 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
           responseData = { success: false, message: 'Gemini model not selected. Please select a model in the extension options.' };
         } else {
           const genAI = new GoogleGenerativeAI(apiKey);
-          const model = genAI.getGenerativeModel({ model: selectedModel });
-          console.log(`[Background] Using Gemini model: ${selectedModel}`);
+          let model;
+          try {
+            // Try to create model with selected model
+            model = genAI.getGenerativeModel({ model: selectedModel });
+            console.log(`[Background] Using Gemini model: ${selectedModel}`);
+          } catch (error) {
+            console.warn(`[Background] Selected model ${selectedModel} not available, trying fallback`);
+            // Fallback: try to get available models and use the first one
+            try {
+              const result = await genAI.listModels();
+              const models = result.models || [];
+              const compatibleModels = models.filter(model => 
+                model.supportedGenerationMethods?.includes('generateContent')
+              );
+              
+              if (compatibleModels.length > 0) {
+                const fallbackModelName = compatibleModels[0].name;
+                model = genAI.getGenerativeModel({ model: fallbackModelName });
+                console.log(`[Background] Using fallback model: ${fallbackModelName}`);
+                await sendProgress(`モデル ${selectedModel} が利用できないため、${fallbackModelName} を使用します`);
+              } else {
+                throw new Error('No compatible models available');
+              }
+            } catch (fallbackError) {
+              console.error(`[Background] Fallback model selection failed:`, fallbackError);
+              responseData = { success: false, message: 'Selected model is not available and no fallback models found. Please check your model selection in options.' };
+              sendResponse(responseData);
+              return;
+            }
+          }
 
           // ページコンテンツから音楽情報を抽出（ノイズ除去も含む）
           await sendProgress('ページから音楽情報を抽出中...');
