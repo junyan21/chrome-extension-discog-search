@@ -72,29 +72,13 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
             model = genAI.getGenerativeModel({ model: selectedModel });
             console.log(`[Background] Using Gemini model: ${selectedModel}`);
           } catch (error) {
-            console.warn(`[Background] Selected model ${selectedModel} not available, trying fallback`);
-            // Fallback: try to get available models and use the first one
-            try {
-              const result = await genAI.listModels();
-              const models = result.models || [];
-              const compatibleModels = models.filter(model => 
-                model.supportedGenerationMethods?.includes('generateContent')
-              );
-              
-              if (compatibleModels.length > 0) {
-                const fallbackModelName = compatibleModels[0].name;
-                model = genAI.getGenerativeModel({ model: fallbackModelName });
-                console.log(`[Background] Using fallback model: ${fallbackModelName}`);
-                await sendProgress(`モデル ${selectedModel} が利用できないため、${fallbackModelName} を使用します`);
-              } else {
-                throw new Error('No compatible models available');
-              }
-            } catch (fallbackError) {
-              console.error(`[Background] Fallback model selection failed:`, fallbackError);
-              responseData = { success: false, message: 'Selected model is not available and no fallback models found. Please check your model selection in options.' };
-              sendResponse(responseData);
-              return;
-            }
+            console.error(`[Background] Failed to initialize model ${selectedModel}:`, error);
+            responseData = { 
+              success: false, 
+              message: `Selected model "${selectedModel}" is not available. Please select a different model in the extension options.` 
+            };
+            sendResponse(responseData);
+            return;
           }
 
           // ページコンテンツから音楽情報を抽出（ノイズ除去も含む）
