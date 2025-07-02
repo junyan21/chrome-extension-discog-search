@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const testButton = document.getElementById('test') as HTMLButtonElement;
   const statusDiv = document.getElementById('status') as HTMLDivElement;
   const togglePasswordButton = document.getElementById('togglePassword') as HTMLButtonElement;
-  const showIcon = document.getElementById('showIcon') as SVGElement;
-  const hideIcon = document.getElementById('hideIcon') as SVGElement;
+  const showIcon = document.getElementById('showIcon') as HTMLElement;
+  const hideIcon = document.getElementById('hideIcon') as HTMLElement;
 
   // Load saved API key
   chrome.storage.local.get(['geminiApiKey'], (result) => {
