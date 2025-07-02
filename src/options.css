@@ -1,14 +1,4 @@
 /* Material Design 3 Floating Label Input Animation */
-.floating-label-input {
-  position: relative;
-}
-
-.floating-label-input input:focus + label,
-.floating-label-input input:not(:placeholder-shown) + label {
-  transform: translateY(-24px) scale(0.75);
-  color: var(--md-sys-color-primary);
-}
-
 /* Enhanced focus states */
 .focus-ring:focus {
   outline: none;
