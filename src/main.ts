@@ -2,6 +2,7 @@ import './style.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   const extractAndProcessButton = document.getElementById('extractAndProcess') as HTMLButtonElement;
+  const settingsButton = document.getElementById('settingsButton') as HTMLButtonElement;
   const resultDiv = document.getElementById('result') as HTMLDivElement;
   const progressDiv = document.getElementById('progress') as HTMLDivElement;
   const progressMessageDiv = document.getElementById('progressMessage') as HTMLDivElement;
@@ -132,13 +133,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // 設定ボタンのクリックイベント
+  settingsButton.addEventListener('click', () => {
+    chrome.runtime.openOptionsPage();
+  });
+
   extractAndProcessButton.addEventListener('click', async () => {
     console.log('[Main] Extract & Process button clicked');
     const startTime = performance.now();
     
     // UIをリセット
     resultDiv.textContent = '';
-    resultDiv.style.color = 'black';
+    resultDiv.style.color = 'var(--text-primary)';
+    resultDiv.style.display = 'none';
     progressDiv.style.display = 'block';
     updateProgress('初期化中...');
 
@@ -225,7 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           resultDiv.innerHTML = displayContent;
-          resultDiv.style.color = 'green';
+          resultDiv.style.color = 'var(--text-primary)';
+          resultDiv.style.display = 'block';
           
           const endTime = performance.now();
           const processingTime = ((endTime - startTime) / 1000).toFixed(2);
@@ -237,17 +245,20 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (parseError: any) {
           console.error('[Main] JSON Parse Error:', parseError);
           resultDiv.textContent = `Error parsing LLM response: ${parseError.message || parseError}\nRaw response: ${llmResponse.result}`;
-          resultDiv.style.color = 'red';
+          resultDiv.style.color = 'var(--error)';
+          resultDiv.style.display = 'block';
         }
       } else {
         resultDiv.textContent = `Error processing with LLM: ${llmResponse?.message || 'Unknown error'}`;
-        resultDiv.style.color = 'red';
+        resultDiv.style.color = 'var(--error)';
+        resultDiv.style.display = 'block';
         progressDiv.style.display = 'none';
       }
     } catch (error: any) {
       console.error('[Main] Popup Error:', error);
       resultDiv.textContent = `An unexpected error occurred: ${error.message || error}`;
-      resultDiv.style.color = 'red';
+      resultDiv.style.color = 'var(--error)';
+      resultDiv.style.display = 'block';
       progressDiv.style.display = 'none';
     }
   });
