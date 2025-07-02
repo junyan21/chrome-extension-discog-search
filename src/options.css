@@ -1,76 +1,38 @@
-/* Material Design 3 Floating Label Input Animation */
-/* Enhanced focus states */
-.focus-ring:focus {
+/* Modern simplified styles for options page */
+
+/* Add focus styles for inputs */
+input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.12);
-}
-
-/* Material Design elevation shadows */
-.elevation-1 {
-  box-shadow: 
-    0px 1px 3px 0px rgba(0, 0, 0, 0.30),
-    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-}
-
-.elevation-2 {
-  box-shadow: 
-    0px 2px 6px 2px rgba(0, 0, 0, 0.15),
-    0px 8px 24px 4px rgba(0, 0, 0, 0.30);
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 /* Button hover effects */
-.md-button {
-  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.md-button:hover {
+button:hover {
   transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-.md-button:active {
+button:active {
   transform: translateY(0);
 }
 
-/* Ripple effect for buttons */
-.md-button {
-  position: relative;
-  overflow: hidden;
+/* Disable styles for buttons */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
-.md-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s;
+/* Toggle button hover */
+#togglePassword:hover {
+  color: var(--text-primary);
+  background: var(--surface-light);
 }
 
-.md-button:active::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* Input field enhancements */
-.md-textfield {
-  position: relative;
-}
-
-.md-textfield input {
-  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.md-textfield input:focus {
-  transform: scale(1.02);
-}
-
-/* Status message animations */
-.status-message {
-  animation: slideIn 0.3s cubic-bezier(0.2, 0, 0, 1);
+/* Status message animation */
+#status {
+  animation: slideIn 0.3s ease-out;
 }
 
 @keyframes slideIn {
@@ -84,9 +46,10 @@
   }
 }
 
-/* Loading state animations */
+/* Loading state for buttons */
 .loading {
   position: relative;
+  pointer-events: none;
 }
 
 .loading::after {
@@ -111,23 +74,27 @@
 /* Responsive design */
 @media (max-width: 480px) {
   .container {
-    padding: 1rem;
+    padding: 1rem !important;
   }
   
-  .md-button {
-    padding: 12px 24px;
-    font-size: 14px;
+  section {
+    padding: 1rem !important;
+  }
+  
+  button {
+    padding: 0.625rem 1rem !important;
+    font-size: 0.8125rem !important;
   }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .md-textfield input {
-    border-width: 2px;
+  input {
+    border-width: 2px !important;
   }
   
-  .md-button {
-    border-width: 2px;
+  button {
+    border-width: 2px !important;
   }
 }
 
@@ -138,4 +105,17 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  
+  button:hover {
+    transform: none !important;
+  }
+}
+
+/* Link styling */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline !important;
 }

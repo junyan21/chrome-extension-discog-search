@@ -1,165 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discog Search Options</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../src/style.css">
-  <link rel="stylesheet" href="../src/options.css">
-  <style>
-    /* Material Design 3 Color System */
-    :root {
-      --md-sys-color-primary: #6750a4;
-      --md-sys-color-on-primary: #ffffff;
-      --md-sys-color-primary-container: #eaddff;
-      --md-sys-color-on-primary-container: #21005d;
-      --md-sys-color-surface: #fffbfe;
-      --md-sys-color-on-surface: #1c1b1f;
-      --md-sys-color-surface-variant: #e7e0ec;
-      --md-sys-color-on-surface-variant: #49454f;
-      --md-sys-color-outline: #79747e;
-      --md-sys-color-outline-variant: #cac4d0;
-      --md-sys-color-surface-container: #f3edf7;
-      --md-sys-color-surface-container-high: #ede6f0;
-      --md-sys-color-error: #ba1a1a;
-      --md-sys-color-on-error: #ffffff;
-      --md-sys-color-success: #386a20;
-      --md-sys-color-on-success: #ffffff;
-    }
-
-    @media (prefers-color-scheme: dark) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discog Search 設定</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../src/style.css" />
+    <link rel="stylesheet" href="../src/options.css" />
+    <style>
       :root {
-        --md-sys-color-primary: #d0bcff;
-        --md-sys-color-on-primary: #371e73;
-        --md-sys-color-primary-container: #4f378b;
-        --md-sys-color-on-primary-container: #eaddff;
-        --md-sys-color-surface: #141218;
-        --md-sys-color-on-surface: #e6e1e5;
-        --md-sys-color-surface-variant: #49454f;
-        --md-sys-color-on-surface-variant: #cac4d0;
-        --md-sys-color-outline: #938f99;
-        --md-sys-color-outline-variant: #49454f;
-        --md-sys-color-surface-container: #211f26;
-        --md-sys-color-surface-container-high: #2b2930;
-        --md-sys-color-error: #ffb4ab;
-        --md-sys-color-on-error: #690005;
-        --md-sys-color-success: #7dd957;
-        --md-sys-color-on-success: #0f2000;
+        --primary-color: #8b5cf6;
+        --primary-light: #a78bfa;
+        --primary-dark: #7c3aed;
+        --background: #ffffff;
+        --surface: #f8fafc;
+        --surface-light: #f1f5f9;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border: #e2e8f0;
+        --border-light: #f1f5f9;
+        --success: #10b981;
+        --error: #ef4444;
+        --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
       }
-    }
-  </style>
-</head>
-<body class="bg-[var(--md-sys-color-surface)] text-[var(--md-sys-color-on-surface)] min-h-screen">
-  <div class="container mx-auto max-w-md p-6">
-    <!-- Header -->
-    <div class="text-center mb-8">
-      <div class="w-16 h-16 mx-auto mb-4 bg-[var(--md-sys-color-primary-container)] rounded-full flex items-center justify-center">
-        <svg class="w-8 h-8 text-[var(--md-sys-color-on-primary-container)]" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #0f172a;
+          --surface: #1e293b;
+          --surface-light: #334155;
+          --text-primary: #f1f5f9;
+          --text-secondary: #cbd5e1;
+          --text-muted: #94a3b8;
+          --border: #334155;
+          --border-light: #475569;
+        }
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-color: var(--background);
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    "
+  >
+    <div class="container" style="max-width: 28rem; margin: 0 auto; padding: 1rem">
+      <!-- Header -->
+      <div
+        style="
+          background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+          color: white;
+          padding: 1.5rem;
+          text-align: center;
+          border-radius: 12px;
+          margin-bottom: 1.5rem;
+        "
+      >
+        <h1 style="font-size: 1.5rem; font-weight: 600; margin: 0 0 0.5rem 0">
+          Discog Search Settings
+        </h1>
       </div>
-      <h1 class="text-2xl font-medium text-[var(--md-sys-color-on-surface)] mb-2">Discog Search</h1>
-      <p class="text-sm text-[var(--md-sys-color-on-surface-variant)]">Configure your search preferences</p>
-    </div>
-
-    <!-- Card Container -->
-    <div class="bg-[var(--md-sys-color-surface-container)] rounded-xl p-6 shadow-sm border border-[var(--md-sys-color-outline-variant)]">
-      <!-- API Key Input Section -->
-      <div class="space-y-6">
-        <div class="relative">
-          <div class="relative">
-            <input
-              type="password"
-              id="apiKey"
-              class="peer w-full px-4 pt-6 pb-2 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline)] rounded-lg text-[var(--md-sys-color-on-surface)] focus:outline-none focus:border-[var(--md-sys-color-primary)] focus:border-2 transition-all duration-200"
-              placeholder=" "
-            />
+      <!-- API設定 -->
+      <section
+        style="
+          background: var(--surface);
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
+          box-shadow: var(--shadow);
+          border: 1px solid var(--border);
+        "
+      >
+        <h2
+          style="
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+          "
+        >
+          API設定
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem">
+          <div style="position: relative">
             <label
-              for="apiKey"
-              class="absolute left-4 top-4 text-[var(--md-sys-color-on-surface-variant)] text-sm transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--md-sys-color-primary)] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[var(--md-sys-color-primary)]"
+              style="
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+              "
+              >Gemini API Key</label
             >
-              Gemini API Key
-            </label>
-            <button
-              type="button"
-              id="togglePassword"
-              class="absolute right-3 top-4 text-[var(--md-sys-color-on-surface-variant)] hover:text-[var(--md-sys-color-on-surface)] transition-colors duration-200"
+            <div style="position: relative">
+              <input
+                type="password"
+                id="apiKey"
+                style="
+                  width: 100%;
+                  padding: 0.75rem 3rem 0.75rem 1rem;
+                  background: var(--surface-light);
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  color: var(--text-primary);
+                  font-size: 0.875rem;
+                  transition: all 0.2s ease;
+                  box-sizing: border-box;
+                "
+                placeholder="sk-..."
+              />
+              <button
+                type="button"
+                id="togglePassword"
+                style="
+                  position: absolute;
+                  right: 0.75rem;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  background: none;
+                  border: none;
+                  color: var(--text-muted);
+                  cursor: pointer;
+                  padding: 0.25rem;
+                  border-radius: 4px;
+                  transition: color 0.2s ease;
+                "
+              >
+                <svg
+                  id="showIcon"
+                  style="width: 1.25rem; height: 1.25rem"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                <svg
+                  id="hideIcon"
+                  style="width: 1.25rem; height: 1.25rem; display: none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L8.464 8.464M19.071 4.929L4.929 19.071"
+                  />
+                </svg>
+              </button>
+            </div>
+            <p
+              style="
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+                line-height: 1.5;
+              "
             >
-              <svg id="showIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-              <svg id="hideIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L8.464 8.464M19.071 4.929L4.929 19.071"/>
-              </svg>
-            </button>
+              APIキーはローカルに安全に保存され、音楽検索機能のみに使用されます。
+              <a
+                href="https://makersuite.google.com/app/apikey"
+                target="_blank"
+                style="color: var(--primary-color); text-decoration: none"
+              >
+                Gemini API キーを取得
+              </a>
+            </p>
           </div>
-          <p class="text-xs text-[var(--md-sys-color-on-surface-variant)] mt-2 leading-relaxed">
-            Your API key is securely stored locally and used only for music search functionality. 
-            <a href="https://makersuite.google.com/app/apikey" target="_blank" class="text-[var(--md-sys-color-primary)] hover:underline">
-              Get your Gemini API key
-            </a>
-          </p>
-        </div>
 
-        <!-- Model Selection Section -->
-        <div class="relative">
-          <div class="relative">
+          <div style="position: relative">
+            <label
+              style="
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+              "
+              >Gemini モデル名</label
+            >
             <input
               type="text"
               id="modelInput"
-              class="peer w-full px-4 pt-6 pb-2 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline)] rounded-lg text-[var(--md-sys-color-on-surface)] focus:outline-none focus:border-[var(--md-sys-color-primary)] focus:border-2 transition-all duration-200"
-              placeholder=" "
+              style="
+                width: 100%;
+                padding: 0.75rem 1rem;
+                background: var(--surface-light);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                color: var(--text-primary);
+                font-size: 0.875rem;
+                transition: all 0.2s ease;
+                box-sizing: border-box;
+              "
+              placeholder="gemini-2.5-flash"
             />
-            <label
-              for="modelInput"
-              class="absolute left-4 top-4 text-[var(--md-sys-color-on-surface-variant)] text-sm transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--md-sys-color-primary)] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[var(--md-sys-color-primary)]"
+            <p
+              style="
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+                line-height: 1.5;
+              "
             >
-              Gemini モデル名
-            </label>
+              テキスト入力・出力に対応したGeminiモデル名を入力してください。<br />
+              詳細は
+              <a
+                href="https://ai.google.dev/gemini-api/docs/models"
+                target="_blank"
+                style="color: var(--primary-color); text-decoration: none"
+                >Gemini API モデル一覧</a
+              >
+              を参照してください。<br />
+              例：<code
+                style="
+                  background: var(--surface-light);
+                  padding: 0.125rem 0.25rem;
+                  border-radius: 4px;
+                  font-size: 0.75rem;
+                "
+                >gemini-2.5-flash</code
+              >、
+              <code
+                style="
+                  background: var(--surface-light);
+                  padding: 0.125rem 0.25rem;
+                  border-radius: 4px;
+                  font-size: 0.75rem;
+                "
+                >gemini-2.0-flash-lite</code
+              >、
+              <code
+                style="
+                  background: var(--surface-light);
+                  padding: 0.125rem 0.25rem;
+                  border-radius: 4px;
+                  font-size: 0.75rem;
+                "
+                >gemini-1.5-pro</code
+              >
+            </p>
           </div>
-          <p class="text-xs text-[var(--md-sys-color-on-surface-variant)] mt-2 leading-relaxed">
-            テキスト入力・出力に対応したGeminiモデル名を入力してください。<br>
-            詳細は <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" class="text-[var(--md-sys-color-primary)] hover:underline">Gemini API モデル一覧</a> を参照してください。<br>
-            例：<code class="bg-[var(--md-sys-color-surface-container-high)] px-1 rounded">gemini-2.5-flash</code>、
-            <code class="bg-[var(--md-sys-color-surface-container-high)] px-1 rounded">gemini-2.0-flash-lite</code>、
-            <code class="bg-[var(--md-sys-color-surface-container-high)] px-1 rounded">gemini-1.5-pro</code>
-          </p>
-        </div>
 
-        <!-- Action Buttons -->
-        <div class="flex gap-3 pt-4">
-          <button
-            id="save"
-            class="flex-1 bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] py-3 px-6 rounded-full font-medium hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-primary)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            設定を保存
-          </button>
-          <button
-            id="test"
-            class="px-6 py-3 border border-[var(--md-sys-color-outline)] text-[var(--md-sys-color-primary)] rounded-full font-medium hover:bg-[var(--md-sys-color-surface-container-high)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-primary)] focus:ring-offset-2"
-          >
-            テスト
-          </button>
-        </div>
+          <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem">
+            <button
+              id="save"
+              style="
+                flex: 1;
+                background: var(--primary-color);
+                color: white;
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 8px;
+                font-weight: 500;
+                font-size: 0.875rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+              "
+              onmouseover="this.style.background = 'var(--primary-dark)';"
+              onmouseout="this.style.background = 'var(--primary-color)';"
+            >
+              設定を保存
+            </button>
+            <button
+              id="test"
+              style="
+                padding: 0.75rem 1.5rem;
+                border: 1px solid var(--border);
+                background: var(--background);
+                color: var(--primary-color);
+                border-radius: 8px;
+                font-weight: 500;
+                font-size: 0.875rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+              "
+              onmouseover="this.style.background = 'var(--surface)'; this.style.borderColor = 'var(--primary-color)';"
+              onmouseout="this.style.background = 'var(--background)'; this.style.borderColor = 'var(--border)';"
+            >
+              APIキーをテスト
+            </button>
+          </div>
 
-        <!-- Status Message -->
-        <div id="status" class="hidden p-4 rounded-lg text-sm font-medium"></div>
+          <!-- Status Message -->
+          <div
+            id="status"
+            style="
+              display: none;
+              padding: 1rem;
+              border-radius: 8px;
+              font-size: 0.875rem;
+              font-weight: 500;
+              margin-top: 1rem;
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div style="text-align: center; margin-top: 2rem">
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0">
+          Version 1.0.0 •
+          <a
+            href="https://github.com/junyan21/chrome-extension-discog-search"
+            target="_blank"
+            style="color: var(--primary-color); text-decoration: none"
+          >
+            View on GitHub
+          </a>
+        </p>
       </div>
     </div>
 
-    <!-- Footer -->
-    <div class="text-center mt-8">
-      <p class="text-xs text-[var(--md-sys-color-on-surface-variant)]">
-        Version 1.0.0 • 
-        <a href="https://github.com/junyan21/chrome-extension-discog-search" target="_blank" class="text-[var(--md-sys-color-primary)] hover:underline">
-          View on GitHub
-        </a>
-      </p>
-    </div>
-  </div>
-
-  <script type="module" src="../src/options.ts"></script>
-</body>
+    <script type="module" src="../src/options.ts"></script>
+  </body>
 </html>

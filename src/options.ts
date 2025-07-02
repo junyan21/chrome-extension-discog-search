@@ -22,25 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
   togglePasswordButton.addEventListener('click', () => {
     const isPassword = apiKeyInput.type === 'password';
     apiKeyInput.type = isPassword ? 'text' : 'password';
-    showIcon.classList.toggle('hidden', !isPassword);
-    hideIcon.classList.toggle('hidden', isPassword);
+    showIcon.style.display = isPassword ? 'none' : 'block';
+    hideIcon.style.display = isPassword ? 'block' : 'none';
   });
 
   // Show status message with appropriate styling
   const showStatus = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
-    statusDiv.className = `p-4 rounded-lg text-sm font-medium ${
-      type === 'success' 
-        ? 'bg-[var(--md-sys-color-success)] text-[var(--md-sys-color-on-success)]'
-        : type === 'error'
-        ? 'bg-[var(--md-sys-color-error)] text-[var(--md-sys-color-on-error)]'
-        : 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]'
-    }`;
+    statusDiv.style.display = 'block';
+    statusDiv.style.padding = '1rem';
+    statusDiv.style.borderRadius = '8px';
+    statusDiv.style.fontSize = '0.875rem';
+    statusDiv.style.fontWeight = '500';
+    statusDiv.style.marginTop = '1rem';
+    
+    if (type === 'success') {
+      statusDiv.style.background = 'var(--success)';
+      statusDiv.style.color = 'white';
+    } else if (type === 'error') {
+      statusDiv.style.background = 'var(--error)';
+      statusDiv.style.color = 'white';
+    } else {
+      statusDiv.style.background = 'var(--surface)';
+      statusDiv.style.color = 'var(--primary-color)';
+      statusDiv.style.border = '1px solid var(--primary-color)';
+    }
+    
     statusDiv.textContent = message;
-    statusDiv.classList.remove('hidden');
     
     if (type !== 'error') {
       setTimeout(() => {
-        statusDiv.classList.add('hidden');
+        statusDiv.style.display = 'none';
       }, 3000);
     }
   };
