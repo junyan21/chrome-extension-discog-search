@@ -106,32 +106,25 @@
         <!-- Model Selection Section -->
         <div class="relative">
           <div class="relative">
-            <select
-              id="modelSelect"
-              class="w-full px-4 pt-6 pb-2 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline)] rounded-lg text-[var(--md-sys-color-on-surface)] focus:outline-none focus:border-[var(--md-sys-color-primary)] focus:border-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled
-            >
-              <option value="">Select a model...</option>
-            </select>
+            <input
+              type="text"
+              id="modelInput"
+              class="peer w-full px-4 pt-6 pb-2 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline)] rounded-lg text-[var(--md-sys-color-on-surface)] focus:outline-none focus:border-[var(--md-sys-color-primary)] focus:border-2 transition-all duration-200"
+              placeholder=" "
+            />
             <label
-              for="modelSelect"
-              class="absolute left-4 top-2 text-xs text-[var(--md-sys-color-primary)]"
+              for="modelInput"
+              class="absolute left-4 top-4 text-[var(--md-sys-color-on-surface-variant)] text-sm transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--md-sys-color-primary)] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-[var(--md-sys-color-primary)]"
             >
-              Gemini Model
+              Gemini モデル名
             </label>
-            <button
-              type="button"
-              id="refreshModels"
-              class="absolute right-3 top-4 text-[var(--md-sys-color-on-surface-variant)] hover:text-[var(--md-sys-color-on-surface)] transition-colors duration-200 disabled:opacity-50"
-              disabled
-            >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-              </svg>
-            </button>
           </div>
           <p class="text-xs text-[var(--md-sys-color-on-surface-variant)] mt-2 leading-relaxed">
-            分析に使用するGeminiモデルを選択してください。モデル情報は自動的に取得されます。
+            テキスト入力・出力に対応したGeminiモデル名を入力してください。<br>
+            詳細は <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" class="text-[var(--md-sys-color-primary)] hover:underline">Gemini API モデル一覧</a> を参照してください。<br>
+            例：<code class="bg-[var(--md-sys-color-surface-container-high)] px-1 rounded">gemini-2.5-flash</code>、
+            <code class="bg-[var(--md-sys-color-surface-container-high)] px-1 rounded">gemini-2.0-flash-lite</code>、
+            <code class="bg-[var(--md-sys-color-surface-container-high)] px-1 rounded">gemini-1.5-pro</code>
           </p>
         </div>
 
@@ -141,13 +134,13 @@
             id="save"
             class="flex-1 bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] py-3 px-6 rounded-full font-medium hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-primary)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Save Configuration
+            設定を保存
           </button>
           <button
             id="test"
             class="px-6 py-3 border border-[var(--md-sys-color-outline)] text-[var(--md-sys-color-primary)] rounded-full font-medium hover:bg-[var(--md-sys-color-surface-container-high)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-primary)] focus:ring-offset-2"
           >
-            Test
+            テスト
           </button>
         </div>
 

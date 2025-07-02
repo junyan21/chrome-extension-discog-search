@@ -12,6 +12,7 @@ The extension follows a simplified, dependency-light architecture designed for m
 - **AI-Powered Processing**: Leverage LLM capabilities for content analysis and noise filtering
 - **Reliable Communication**: Use direct Chrome extension APIs without complex injection patterns
 - **Manifest V3 Compliance**: Follow latest Chrome extension standards
+- **Avoid Hardcoding**: モデル名などはハードコーディングしないでください
 
 ## Component Architecture
 
