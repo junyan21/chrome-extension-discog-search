@@ -148,6 +148,9 @@ The extension follows a simplified, dependency-light architecture designed for m
 - `npm run dev` - Development mode with hot reload
 - `npm run build` - Production build with TypeScript compilation and Vite bundling
 - `npm install` - Install dependencies (minimal set: only Google Generative AI)
+- `npm run test:visual` - Run visual regression tests with Playwright
+- `npm run test:visual:update` - Update visual test baseline snapshots
+- `npm run test:visual:ui` - Open Playwright UI mode for interactive visual testing
 
 ## Common Issues and Solutions
 
@@ -175,11 +178,61 @@ The extension follows a simplified, dependency-light architecture designed for m
 
 ## Testing Considerations
 
+### Manual Testing
 - Test on various music-related websites (artist pages, reviews, stores)
 - Verify behavior on restricted pages (chrome://, extensions, etc.)
 - Test with and without existing content scripts
 - Validate API key configuration and error states
 - Check content extraction quality and length limits
+
+### Visual Regression Testing
+**Framework**: Playwright Test framework for automated visual testing
+
+**Test Structure**:
+```
+tests/
+├── popup.visual.spec.ts    # Popup UI visual tests
+└── options.visual.spec.ts  # Options page visual tests
+```
+
+**Key Features**:
+- **Snapshot Testing**: Captures screenshots and compares against baselines
+- **Diff Tolerance**: Configured with 0.5% pixel difference tolerance (`maxDiffPixelRatio: 0.005`)
+- **Single Worker**: Tests run with `workers: 1` for stability with local dev server
+- **Chromium Only**: Tests target Chrome browser specifically
+
+**Test Coverage**:
+1. **Popup Tests**:
+   - Initial empty state
+   - Loading state with turntable animation
+   - Vinyl-only result display
+   - Multi-format result display
+   - Error state handling
+
+2. **Options Tests**:
+   - Initial form state
+   - API key input states
+   - Save confirmation display
+   - Button hover effects
+   - Input focus states
+
+**Running Tests**:
+```bash
+# First time setup - create baseline snapshots
+npm run test:visual:update
+
+# Run tests against baselines
+npm run test:visual
+
+# Interactive UI mode for debugging
+npm run test:visual:ui
+```
+
+**Best Practices**:
+- Wait for elements to be visible before interactions (`waitForSelector`)
+- Use stable selectors (IDs for inputs, text content for buttons)
+- Disable animations where possible for consistent snapshots
+- Store snapshots in version control for team consistency
 
 ## UI/UX Enhancements
 

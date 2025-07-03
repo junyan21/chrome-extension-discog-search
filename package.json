@@ -7,10 +7,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "tailwind:init": "tailwindcss init -p",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual:ui": "playwright test --ui"
   },
   "devDependencies": {
+    "@playwright/test": "^1.53.2",
     "@types/chrome": "^0.0.328",
+    "@types/node": "^24.0.10",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",

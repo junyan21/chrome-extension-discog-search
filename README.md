@@ -113,6 +113,9 @@ The extension works on most HTTP/HTTPS web pages containing music information. I
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview built extension
+- `npm run test:visual` - Run visual regression tests
+- `npm run test:visual:update` - Update visual test snapshots
+- `npm run test:visual:ui` - Open Playwright UI mode for visual tests
 
 ### Project Structure
 
@@ -136,6 +139,38 @@ public/
     ├── icon-48.png
     └── icon-128.png
 ```
+
+## Testing
+
+### Visual Regression Testing
+
+This project uses Playwright for visual regression testing to ensure UI consistency across updates.
+
+#### Running Tests
+
+```bash
+# Run all visual tests
+npm run test:visual
+
+# Update baseline snapshots
+npm run test:visual:update
+
+# Open Playwright UI for interactive testing
+npm run test:visual:ui
+```
+
+#### Test Coverage
+
+Visual tests cover:
+- **Popup UI**: Initial state, loading animations, vinyl/multi-format results, error states
+- **Options Page**: Form states, API key input, save confirmations, hover/focus states
+
+#### Configuration
+
+- Tests run in Chromium browser only (matching the extension's target)
+- Visual diff tolerance: 0.5% (`maxDiffPixelRatio: 0.005`)
+- Snapshots stored in `tests/**/*-snapshots/` directories
+- Test reports available in `playwright-report/`
 
 ## Privacy
 

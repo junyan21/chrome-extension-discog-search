@@ -1,4 +1,4 @@
-import type { DiscogsResult } from './App';
+import type { DiscogsResult } from "./App";
 
 interface ResultDisplayProps {
   result: DiscogsResult;
@@ -6,46 +6,111 @@ interface ResultDisplayProps {
 
 export const ResultDisplay = ({ result }: ResultDisplayProps) => {
   return (
-    <div id="result" style={{ marginTop: '20px' }}>
+    <div id="result" style={{ marginTop: "20px" }}>
       {result.isVinylOnly !== undefined && (
-        <div style={{
-          background: result.isVinylOnly ? '#2d5a2d' : '#5a2d2d',
-          color: 'white',
-          padding: '10px',
-          margin: '5px 0',
-          borderRadius: '5px',
-          fontWeight: 'bold'
-        }}>
-          {result.isVinylOnly ? '🎵 VINYL ONLY RELEASE' : '📀 MULTIPLE FORMATS AVAILABLE'}
+        <div
+          style={{
+            background: result.isVinylOnly ? "#2d5a2d" : "#5a2d2d",
+            color: "white",
+            padding: "10px",
+            margin: "5px 0",
+            borderRadius: "5px",
+            fontWeight: "bold",
+          }}
+        >
+          {result.isVinylOnly ? "🎵 VINYL ONLY RELEASE" : "📀 MULTIPLE FORMATS AVAILABLE"}
         </div>
       )}
-      
-      {result.availableFormats && result.availableFormats.length > 0 && (
-        <div style={{ margin: '5px 0' }}>
-          <strong>Available Formats:</strong> {result.availableFormats.join(', ')}
-        </div>
-      )}
-      
-      <pre style={{
-        background: 'var(--bg-secondary)',
-        padding: '10px',
-        borderRadius: '5px',
-        overflow: 'auto',
-        fontSize: '12px',
-        color: 'var(--text-primary)'
-      }}>
-        {JSON.stringify(result, null, 2)}
-      </pre>
-      
+
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          // background: "var(--bg-secondary)",
+          borderRadius: "5px",
+          overflow: "hidden",
+          fontSize: "14px",
+          color: "var(--text-primary)",
+        }}
+      >
+        <tbody>
+          {result.artist && (
+            <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
+              <td style={{ padding: "10px", fontWeight: "bold", width: "40%" }}>Artist</td>
+              <td style={{ padding: "10px" }}>{result.artist}</td>
+            </tr>
+          )}
+          {result.title && (
+            <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>Title</td>
+              <td style={{ padding: "10px" }}>{result.title}</td>
+            </tr>
+          )}
+          {result.year && (
+            <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>Release Year</td>
+              <td style={{ padding: "10px" }}>{result.year}</td>
+            </tr>
+          )}
+          {result.identifiers && (
+            <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>ID</td>
+              <td style={{ padding: "10px" }}>{result.identifiers}</td>
+            </tr>
+          )}
+          {result.isVinylOnly !== undefined && (
+            <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>Vinyl Only?</td>
+              <td style={{ padding: "10px" }}>
+                <span
+                  style={{
+                    color: result.isVinylOnly ? "#4ade80" : "#f87171",
+                    fontSize: "16px",
+                  }}
+                >
+                  {result.isVinylOnly ? "✓" : "✗"}
+                </span>
+              </td>
+            </tr>
+          )}
+          {result.availableFormats && result.availableFormats.length > 0 && (
+            <tr>
+              <td style={{ padding: "10px", fontWeight: "bold", verticalAlign: "top" }}>
+                Available Formats
+              </td>
+              <td style={{ padding: "10px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                  {result.availableFormats.map((format, index) => (
+                    <span
+                      key={index}
+                      style={{
+                        background: "rgba(139, 92, 246, 0.2)",
+                        color: "var(--primary)",
+                        padding: "2px 8px",
+                        borderRadius: "12px",
+                        fontSize: "12px",
+                        border: "1px solid rgba(139, 92, 246, 0.3)",
+                      }}
+                    >
+                      {format}
+                    </span>
+                  ))}
+                </div>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
       {result.url && (
-        <p style={{ marginTop: '10px' }}>
-          <a 
-            href={result.url} 
-            target="_blank" 
+        <p style={{ marginTop: "10px" }}>
+          <a
+            href={result.url}
+            target="_blank"
             rel="noopener noreferrer"
             style={{
-              color: 'var(--primary)',
-              textDecoration: 'none'
+              color: "var(--primary)",
+              textDecoration: "none",
             }}
           >
             Go to Discogs Page
