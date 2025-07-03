@@ -1,0 +1,25 @@
+title: Discog Search Chrome Extension
+description: Chrome拡張機能「Discog Search」のサポートページ
+theme: jekyll-theme-minimal
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# GitHub Pages settings
+github:
+  repository_name: chrome-extension-discog-search
+  repository_url: https://github.com/junyan21/chrome-extension-discog-search
+  owner_name: junyan21
+  
+# Site settings
+lang: ja
+baseurl: "/chrome-extension-discog-search"
+url: "https://junyan21.github.io"
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: GitHub
+    url: https://github.com/junyan21/chrome-extension-discog-search
