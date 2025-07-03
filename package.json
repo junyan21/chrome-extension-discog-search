@@ -18,6 +18,8 @@
     "vite": "^7.0.0"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1"
+    "@google/generative-ai": "^0.24.1",
+    "@preact/preset-vite": "^2.10.2",
+    "preact": "^10.26.9"
   }
 }
