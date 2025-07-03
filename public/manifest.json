@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Discog Search",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A simple Chrome extension to search Discogs.",
   "icons": {
     "16": "icons/icon-16.png",
@@ -23,15 +23,16 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
+      "matches": ["http://*/*", "https://*/*"],
       "js": ["assets/content.js"],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
   "permissions": ["activeTab", "scripting", "storage", "offscreen"],
-  "host_permissions": ["https://generativelanguage.googleapis.com/", "https://www.google.com/", "https://www.discogs.com/"]
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/",
+    "https://www.google.com/",
+    "https://www.discogs.com/"
+  ]
 }
