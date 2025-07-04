@@ -120,7 +120,7 @@ export const Options = () => {
       padding: '40px 20px'
     }}>
       <h1 style={{ color: 'var(--text-primary)', marginBottom: '30px', textAlign: 'center' }}>
-        Discog Search Settings
+        Vinyl Lens Settings
       </h1>
       
       <APISettings

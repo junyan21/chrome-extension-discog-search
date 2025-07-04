@@ -3,7 +3,7 @@ layout: default
 lang: en
 ---
 
-# Discog Search Chrome Extension Support
+# Vinyl Lens Chrome Extension Support
 
 ## Why I Built This
 

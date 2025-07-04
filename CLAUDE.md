@@ -1,6 +1,6 @@
 # CLAUDE.md - Technical Architecture Documentation
 
-This document provides comprehensive technical details for AI development assistants working on the Discog Search Chrome Extension.
+This document provides comprehensive technical details for AI development assistants working on the Vinyl Lens Chrome Extension.
 
 ## Architecture Overview
 

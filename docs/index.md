@@ -3,7 +3,7 @@ layout: default
 lang: ja
 ---
 
-# Discog Search Chrome Extension サポートページ
+# Vinyl Lens Chrome Extension サポートページ
 
 ## 開発背景
 

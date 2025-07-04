@@ -1,4 +1,4 @@
-# Discog Search Chrome Extension
+# Vinyl Lens Chrome Extension
 
 A Chrome extension that extracts music information from web pages and searches for corresponding Discogs entries using AI-powered content analysis.
 
@@ -37,7 +37,7 @@ A Chrome extension that extracts music information from web pages and searches f
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd discog-search
+   cd vinyl-lens
    ```
 
 2. **Install dependencies**
@@ -71,7 +71,7 @@ A Chrome extension that extracts music information from web pages and searches f
 ## Usage
 
 1. Navigate to any music-related website (artist pages, album reviews, music stores, etc.)
-2. Click the Discog Search extension icon (record-themed design)
+2. Click the Vinyl Lens extension icon (record-themed design)
 3. Watch the spinning turntable animation as processing occurs
 4. View the results with format availability indicators:
    - **Green "VINYL ONLY RELEASE"** - Only available on vinyl/records

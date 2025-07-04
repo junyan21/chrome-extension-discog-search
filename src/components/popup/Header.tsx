@@ -17,10 +17,10 @@ export const Header = ({ onSettingsClick }: HeaderProps) => {
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <img
           src="/icons/icon-128.png"
-          alt="Discog Search"
+          alt="Vinyl Lens"
           style={{ width: "32px", height: "32px" }}
         />
-        <h1 style={{ margin: 0, fontSize: "18px", color: "var(--text-primary)" }}>Discog Search</h1>
+        <h1 style={{ margin: 0, fontSize: "18px", color: "var(--text-primary)" }}>Vinyl Lens</h1>
       </div>
       <SettingsButton onClick={onSettingsClick} />
     </div>
