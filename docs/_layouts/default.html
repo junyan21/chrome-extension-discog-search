@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'ja' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+            <p>{{ site.description }}</p>
+            
+            <nav class="language-switcher" aria-label="Language switcher">
+                {% if page.lang == 'en' %}
+                    <a href="{{ site.baseurl }}/" class="" aria-label="Switch to Japanese">日本語</a>
+                    <a href="{{ site.baseurl }}/index-en" class="active" aria-current="page" aria-label="Current language: English">English</a>
+                {% else %}
+                    <a href="{{ site.baseurl }}/" class="active" aria-current="page" aria-label="現在の言語: 日本語">日本語</a>
+                    <a href="{{ site.baseurl }}/index-en" class="" aria-label="Switch to English">English</a>
+                {% endif %}
+            </nav>
+            
+            <p class="view"><a href="{{ site.github.repository_url }}">View on GitHub</a></p>
+        </header>
+        
+        <section>
+            {{ content }}
+        </section>
+        
+        <footer>
+            <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </footer>
+    </div>
+    
+    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+</body>
+</html>
