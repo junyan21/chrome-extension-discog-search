@@ -24,18 +24,23 @@ lang: ja
 
 #### API キーの取得方法
 
-1. [Google AI Studio](https://aistudio.google.com/app/apikey)にアクセス
+1. [Google AI Studio](https://aistudio.google.com/app/apikey){:target="_blank" rel="noopener noreferrer"}にアクセス
 2. Google アカウントでログイン
 3. 「Create API key」をクリック
 4. 「Create API key in new project」を選択
 5. 生成された API キーをコピー
+
+<div class="security-warning">
+<h4>🔒 セキュリティ上の重要な注意事項</h4>
+<p>API キーは機密情報です。他人と共有したり、パブリックリポジトリにコミットしたりしないでください。API キーが漏洩した場合は、すぐに無効化して新しいキーを生成してください。</p>
+</div>
 
 #### 推奨モデルの選択
 
 - **推奨モデル：**`gemini-2.0-flash-lite`（低遅延、高速で低コスト）
   - 他のモデルを使うのも自由ですが、この拡張機能に高機能なモデルを使う必要性はあまりないと考えています。
 
-**モデル一覧：**[Google AI Models](https://ai.google.dev/models)
+**モデル一覧：**[Google AI Models](https://ai.google.dev/models){:target="_blank" rel="noopener noreferrer"}
 
 ### 2. 拡張機能の設定
 
@@ -69,7 +74,7 @@ lang: ja
 
    - Gemini API の利用料金は利用者の負担です。
    - **ただし、ほとんどの場合は Google の無料利用枠内で利用可能だと思います**
-   - 詳細は[Google AI Studio 料金](https://ai.google.dev/pricing)をご確認ください
+   - 詳細は[Google AI Studio 料金](https://ai.google.dev/pricing){:target="_blank" rel="noopener noreferrer"}をご確認ください
 
 3. **利用制限について**
    - 一部の Web サイトでは動作しない場合があります
@@ -104,6 +109,6 @@ A: 通常の使用では、Google の無料利用枠（月間 1,500 リクエス
 
 - ソースコードは下記リポジトリにあります。
 
-  - **GitHub**：[chrome-extension-discog-search](https://github.com/junyan21/chrome-extension-discog-search)
+  - **GitHub**：[chrome-extension-discog-search](https://github.com/junyan21/chrome-extension-discog-search){:target="_blank" rel="noopener noreferrer"}
 
-  - なにかあれば、[GitHub Issues](https://github.com/junyan21/chrome-extension-discog-search/issues)でお問い合わせください。
+  - なにかあれば、[GitHub Issues](https://github.com/junyan21/chrome-extension-discog-search/issues){:target="_blank" rel="noopener noreferrer"}でお問い合わせください。

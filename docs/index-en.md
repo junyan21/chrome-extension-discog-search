@@ -22,18 +22,23 @@ You'll need a **Gemini API key** to make it work.
 
 #### Getting Your API Key
 
-1. Head over to [Google AI Studio](https://aistudio.google.com/app/apikey)
+1. Head over to [Google AI Studio](https://aistudio.google.com/app/apikey){:target="_blank" rel="noopener noreferrer"}
 2. Sign in with your Google account
 3. Click "Create API key"
 4. Choose "Create API key in new project"
 5. Copy that key - you'll need it in a sec
+
+<div class="security-warning">
+<h4>🔒 Important Security Notice</h4>
+<p>Your API key is sensitive information. Never share it with others or commit it to public repositories. If your API key gets compromised, revoke it immediately and generate a new one.</p>
+</div>
 
 #### Which Model Should I Use?
 
 - **I recommend:** `gemini-2.0-flash-lite` for now (It's fast, cheap, and gets the job done)
   - You can use fancier models if you want, but honestly, this extension doesn't need anything too powerful
 
-**Full model list:** [Google AI Models](https://ai.google.dev/models)
+**Full model list:** [Google AI Models](https://ai.google.dev/models){:target="_blank" rel="noopener noreferrer"}
 
 ### 2. Setting Up the Extension
 
@@ -67,7 +72,7 @@ You'll need a **Gemini API key** to make it work.
 
    - You'll be charged for Gemini API usage
    - **But don't worry - most people will stay within Google's free tier**
-   - Check out [Google AI Studio pricing](https://ai.google.dev/pricing) for details
+   - Check out [Google AI Studio pricing](https://ai.google.dev/pricing){:target="_blank" rel="noopener noreferrer"} for details
 
 3. **Where It Might Not Work**
 
@@ -103,6 +108,6 @@ Check the pricing page for specifics.
 
 - The code lives here:
 
-  - **GitHub**: [chrome-extension-discog-search](https://github.com/junyan21/chrome-extension-discog-search)
+  - **GitHub**: [chrome-extension-discog-search](https://github.com/junyan21/chrome-extension-discog-search){:target="_blank" rel="noopener noreferrer"}
 
-  - Got issues? Hit me up on [GitHub Issues](https://github.com/junyan21/chrome-extension-discog-search/issues)
+  - Got issues? Hit me up on [GitHub Issues](https://github.com/junyan21/chrome-extension-discog-search/issues){:target="_blank" rel="noopener noreferrer"}
