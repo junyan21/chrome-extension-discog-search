@@ -36,7 +36,7 @@ A Chrome extension that extracts music information from web pages and searches f
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/junyan21/chrome-extension-vinyl-lens.git
    cd vinyl-lens
    ```
 

@@ -8,13 +8,13 @@ plugins:
 
 # GitHub Pages settings
 github:
-  repository_name: chrome-extension-discog-search
-  repository_url: https://github.com/junyan21/chrome-extension-discog-search
+  repository_name: chrome-extension-vinyl-lens
+  repository_url: https://github.com/junyan21/chrome-extension-vinyl-lens
   owner_name: junyan21
   
 # Site settings
 lang: ja
-baseurl: "/chrome-extension-discog-search"
+baseurl: "/chrome-extension-vinyl-lens"
 url: "https://junyan21.github.io"
 
 # Navigation
@@ -22,4 +22,4 @@ navigation:
   - title: Home
     url: /
   - title: GitHub
-    url: https://github.com/junyan21/chrome-extension-discog-search
+    url: https://github.com/junyan21/chrome-extension-vinyl-lens

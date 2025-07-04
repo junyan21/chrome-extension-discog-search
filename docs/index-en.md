@@ -108,6 +108,6 @@ Check the pricing page for specifics.
 
 - The code lives here:
 
-  - **GitHub**: [chrome-extension-discog-search](https://github.com/junyan21/chrome-extension-discog-search){:target="_blank" rel="noopener noreferrer"}
+  - **GitHub**: [chrome-extension-vinyl-lens](https://github.com/junyan21/chrome-extension-vinyl-lens){:target="_blank" rel="noopener noreferrer"}
 
-  - Got issues? Hit me up on [GitHub Issues](https://github.com/junyan21/chrome-extension-discog-search/issues){:target="_blank" rel="noopener noreferrer"}
+  - Got issues? Hit me up on [GitHub Issues](https://github.com/junyan21/chrome-extension-vinyl-lens/issues){:target="_blank" rel="noopener noreferrer"}
