@@ -25,6 +25,17 @@ A Chrome extension that extracts music information from web pages and searches f
    - 📀 **MULTIPLE FORMATS AVAILABLE** (red) - Available across various formats
 7. Detailed music information including format availability is shown
 
+## Design Approach
+
+This extension uses custom content extraction instead of Gemini's Grounding feature. This approach allows for:
+
+- **Reduced API costs**: Content is truncated before sending to AI, reducing token usage
+- **Cleaner input**: Removes web page noise (ads, navigation) before processing
+- **Two-stage processing**: Separate prompts for content extraction and Discogs analysis
+- **Music-specific prompts**: Better results for identifying artist/album information
+
+The custom implementation provides good performance while keeping API costs low.
+
 ## Installation
 
 ### Prerequisites
