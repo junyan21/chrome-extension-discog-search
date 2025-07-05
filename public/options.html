@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vinyl Lens 設定</title>
+    <title>Vinyl Lens Settings</title>
+    <script>
+      // Set localized title
+      if (chrome && chrome.i18n) {
+        document.title = chrome.i18n.getMessage('optionsTitle');
+      }
+    </script>
     <link rel="stylesheet" href="../src/style.css" />
     <link rel="stylesheet" href="../src/options.css" />
     <style>

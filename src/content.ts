@@ -1,5 +1,10 @@
 console.log('[Content] Content script loaded with simple DOM extraction');
 
+// Helper function for i18n in content script
+function getMessage(messageName: string, substitutions?: string | string[]): string {
+  return chrome.i18n.getMessage(messageName, substitutions);
+}
+
 // スクリプトとスタイルタグを除去する関数
 function removeScriptsAndStyles(element: Element): string {
   const clone = element.cloneNode(true) as Element;
@@ -67,11 +72,11 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         sendResponse({ success: true, content: limitedContent, url: url });
       } else {
         console.error('[Content] Insufficient content extracted');
-        sendResponse({ success: false, message: 'Could not extract sufficient content from page.' });
+        sendResponse({ success: false, message: getMessage('insufficientContent') });
       }
     } catch (error: any) {
       console.error('[Content] Error during content extraction:', error);
-      sendResponse({ success: false, message: `Extraction error: ${error.message}` });
+      sendResponse({ success: false, message: getMessage('extractionError', error.message) });
     }
     
     return true; // Indicates that the response will be sent asynchronously

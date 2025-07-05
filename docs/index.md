@@ -10,7 +10,7 @@ lang: ja
 この拡張機能は、レコードショッピングをより便利にするために作りました。
 
 我が家では、自宅の居住スペース確保のために見境なくレコードを買うことは難しくなり、  
-レコードを買うなら『デジタルでは買えないヴァイナルオンリーの音源である』という家族への言い訳が必要になっています。
+レコードを買うなら『デジタルでは買えないヴァイナルオンリーの音源なんだよね』という家族への言い訳が必要になっています。
 
 これにはデジタルリリースの有無を確認する必要なわけですが、
 レコード商品ページで拡張機能を使えば、その音源がヴァイナルオンリーのリリースかどうかを確認することができます。
@@ -24,7 +24,7 @@ lang: ja
 
 #### API キーの取得方法
 
-1. [Google AI Studio](https://aistudio.google.com/app/apikey){:target="_blank" rel="noopener noreferrer"}にアクセス
+1. [Google AI Studio](https://aistudio.google.com/app/apikey){:target="\_blank" rel="noopener noreferrer"}にアクセス
 2. Google アカウントでログイン
 3. 「Create API key」をクリック
 4. 「Create API key in new project」を選択
@@ -40,7 +40,7 @@ lang: ja
 - **推奨モデル：**`gemini-2.0-flash-lite`（低遅延、高速で低コスト）
   - 他のモデルを使うのも自由ですが、この拡張機能に高機能なモデルを使う必要性はあまりないと考えています。
 
-**モデル一覧：**[Google AI Models](https://ai.google.dev/models){:target="_blank" rel="noopener noreferrer"}
+**モデル一覧：**[Google AI Models](https://ai.google.dev/models){:target="\_blank" rel="noopener noreferrer"}
 
 ### 2. 拡張機能の設定
 
@@ -74,7 +74,7 @@ lang: ja
 
    - Gemini API の利用料金は利用者の負担です。
    - **ただし、ほとんどの場合は Google の無料利用枠内で利用可能だと思います**
-   - 詳細は[Google AI Studio 料金](https://ai.google.dev/pricing){:target="_blank" rel="noopener noreferrer"}をご確認ください
+   - 詳細は[Google AI Studio 料金](https://ai.google.dev/pricing){:target="\_blank" rel="noopener noreferrer"}をご確認ください
 
 3. **利用制限について**
    - 一部の Web サイトでは動作しない場合があります
@@ -109,6 +109,6 @@ A: 通常の使用では、Google の無料利用枠（月間 1,500 リクエス
 
 - ソースコードは下記リポジトリにあります。
 
-  - **GitHub**：[chrome-extension-vinyl-lens](https://github.com/junyan21/chrome-extension-vinyl-lens){:target="_blank" rel="noopener noreferrer"}
+  - **GitHub**：[chrome-extension-vinyl-lens](https://github.com/junyan21/chrome-extension-vinyl-lens){:target="\_blank" rel="noopener noreferrer"}
 
-  - なにかあれば、[GitHub Issues](https://github.com/junyan21/chrome-extension-vinyl-lens/issues){:target="_blank" rel="noopener noreferrer"}でお問い合わせください。
+  - なにかあれば、[GitHub Issues](https://github.com/junyan21/chrome-extension-vinyl-lens/issues){:target="\_blank" rel="noopener noreferrer"}でお問い合わせください。

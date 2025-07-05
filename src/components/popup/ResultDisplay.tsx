@@ -1,10 +1,13 @@
 import type { DiscogsResult } from "./App";
+import { useI18n } from "../../hooks/useI18n";
 
 interface ResultDisplayProps {
   result: DiscogsResult;
 }
 
 export const ResultDisplay = ({ result }: ResultDisplayProps) => {
+  const { getMessage } = useI18n();
+
   return (
     <div id="result" style={{ marginTop: "20px" }}>
       {result.isVinylOnly !== undefined && (
@@ -18,7 +21,7 @@ export const ResultDisplay = ({ result }: ResultDisplayProps) => {
             fontWeight: "bold",
           }}
         >
-          {result.isVinylOnly ? "🎵 VINYL ONLY RELEASE" : "📀 MULTIPLE FORMATS AVAILABLE"}
+          {result.isVinylOnly ? getMessage("vinylOnlyRelease") : getMessage("multipleFormats")}
         </div>
       )}
 
@@ -36,31 +39,31 @@ export const ResultDisplay = ({ result }: ResultDisplayProps) => {
         <tbody>
           {result.artist && (
             <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
-              <td style={{ padding: "10px", fontWeight: "bold", width: "40%" }}>Artist</td>
+              <td style={{ padding: "10px", fontWeight: "bold", width: "40%" }}>{getMessage("artist")}</td>
               <td style={{ padding: "10px" }}>{result.artist}</td>
             </tr>
           )}
           {result.title && (
             <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
-              <td style={{ padding: "10px", fontWeight: "bold" }}>Title</td>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>{getMessage("title")}</td>
               <td style={{ padding: "10px" }}>{result.title}</td>
             </tr>
           )}
           {result.year && (
             <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
-              <td style={{ padding: "10px", fontWeight: "bold" }}>Release Year</td>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>{getMessage("releaseYear")}</td>
               <td style={{ padding: "10px" }}>{result.year}</td>
             </tr>
           )}
           {result.identifiers && (
             <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
-              <td style={{ padding: "10px", fontWeight: "bold" }}>ID</td>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>{getMessage("id")}</td>
               <td style={{ padding: "10px" }}>{result.identifiers}</td>
             </tr>
           )}
           {result.isVinylOnly !== undefined && (
             <tr style={{ borderBottom: "1px solid rgba(128, 128, 128, 0.2)" }}>
-              <td style={{ padding: "10px", fontWeight: "bold" }}>Vinyl Only?</td>
+              <td style={{ padding: "10px", fontWeight: "bold" }}>{getMessage("vinylOnly")}</td>
               <td style={{ padding: "10px" }}>
                 <span
                   style={{
@@ -76,7 +79,7 @@ export const ResultDisplay = ({ result }: ResultDisplayProps) => {
           {result.availableFormats && result.availableFormats.length > 0 && (
             <tr>
               <td style={{ padding: "10px", fontWeight: "bold", verticalAlign: "top" }}>
-                Available Formats
+                {getMessage("availableFormats")}
               </td>
               <td style={{ padding: "10px" }}>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
@@ -113,7 +116,7 @@ export const ResultDisplay = ({ result }: ResultDisplayProps) => {
               textDecoration: "none",
             }}
           >
-            Go to Discogs Page
+            {getMessage("goToDiscogs")}
           </a>
         </p>
       )}

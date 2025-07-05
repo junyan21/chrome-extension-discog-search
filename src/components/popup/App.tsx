@@ -1,5 +1,6 @@
 import { useState, useEffect } from "preact/hooks";
 import { useChromeMessaging } from "../../hooks/useChromeMessaging";
+import { useI18n } from "../../hooks/useI18n";
 import { Header } from "./Header";
 import { SearchButton } from "./SearchButton";
 import { Progress } from "./Progress";
@@ -20,6 +21,7 @@ export const App = () => {
   const [result, setResult] = useState<DiscogsResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const { getMessage } = useI18n();
 
   const { sendMessage, sendTabMessage, setupProgressListener, progress, setProgress } =
     useChromeMessaging();
@@ -37,31 +39,29 @@ export const App = () => {
     setResult(null);
     setError(null);
     setIsProcessing(true);
-    setProgress("初期化中...");
+    setProgress(getMessage("initializing"));
 
     try {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (!tab || !tab.id) {
-        throw new Error("No active tab found.");
+        throw new Error(getMessage("noActiveTab"));
       }
 
       // Check if URL is restricted
       if (isRestrictedUrl(tab.url || "")) {
-        throw new Error(
-          "このページでは拡張機能を使用できません。通常のWebページ（http://またはhttps://）でお試しください。"
-        );
+        throw new Error(getMessage("restrictedPage"));
       }
 
       // Extract content from the page
-      setProgress("ページコンテンツを抽出中...");
+      setProgress(getMessage("extractingContent"));
       const contentResponse = await sendTabMessage(tab.id, { action: "extractContent" });
 
       if (!contentResponse || !contentResponse.success || !contentResponse.content) {
-        throw new Error(contentResponse?.message || "抽出されたコンテンツが空です");
+        throw new Error(contentResponse?.message || getMessage("emptyContent"));
       }
 
       // Process with AI
-      setProgress("検索中です...");
+      setProgress(getMessage("searching"));
       const llmResponse = await sendMessage({
         action: "processContent",
         content: contentResponse.content,
@@ -80,13 +80,13 @@ export const App = () => {
 
         const endTime = performance.now();
         const time = ((endTime - startTime) / 1000).toFixed(2);
-        setProgress(`処理完了！ (${time}秒)`);
+        setProgress(getMessage("processingComplete", time));
       } else {
         throw new Error(llmResponse?.message || "Unknown error processing with LLM");
       }
     } catch (err) {
       console.error("[App] Error:", err);
-      setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      setError(err instanceof Error ? err.message : getMessage("unexpectedError"));
     } finally {
       setIsProcessing(false);
     }
@@ -103,7 +103,7 @@ export const App = () => {
 
       {isProcessing && <Progress message={progress} />}
 
-      {error && <div style={{ color: "var(--error)", marginTop: "10px" }}>Error: {error}</div>}
+      {error && <div style={{ color: "var(--error)", marginTop: "10px" }}>{getMessage("errorPrefix")}{error}</div>}
 
       {result && !isProcessing && <ResultDisplay result={result} />}
     </div>

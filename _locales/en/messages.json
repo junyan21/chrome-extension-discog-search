@@ -1,0 +1,255 @@
+{
+  "extensionName": {
+    "message": "Vinyl Lens"
+  },
+  "extensionDescription": {
+    "message": "A simple Chrome extension to check if a record is a vinyl-only release."
+  },
+  "popupTitle": {
+    "message": "Vinyl Lens"
+  },
+  "optionsTitle": {
+    "message": "Vinyl Lens Settings"
+  },
+  "initializing": {
+    "message": "Initializing..."
+  },
+  "noActiveTab": {
+    "message": "No active tab found."
+  },
+  "restrictedPage": {
+    "message": "This extension cannot be used on this page. Please try on a regular web page (http:// or https://)."
+  },
+  "extractingContent": {
+    "message": "Extracting page content..."
+  },
+  "emptyContent": {
+    "message": "Extracted content is empty"
+  },
+  "searching": {
+    "message": "Searching..."
+  },
+  "processingComplete": {
+    "message": "Processing complete! ($TIME$ seconds)",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "unexpectedError": {
+    "message": "An unexpected error occurred"
+  },
+  "errorPrefix": {
+    "message": "Error: "
+  },
+  "processing": {
+    "message": "Processing..."
+  },
+  "searchButton": {
+    "message": "Search music information"
+  },
+  "vinylOnlyRelease": {
+    "message": "🎵 VINYL ONLY RELEASE"
+  },
+  "multipleFormats": {
+    "message": "📀 MULTIPLE FORMATS AVAILABLE"
+  },
+  "artist": {
+    "message": "Artist"
+  },
+  "title": {
+    "message": "Title"
+  },
+  "releaseYear": {
+    "message": "Release Year"
+  },
+  "id": {
+    "message": "ID"
+  },
+  "vinylOnly": {
+    "message": "Vinyl Only?"
+  },
+  "availableFormats": {
+    "message": "Available Formats"
+  },
+  "goToDiscogs": {
+    "message": "Go to Discogs Page"
+  },
+  "settingsAriaLabel": {
+    "message": "Settings"
+  },
+  "optionsPageTitle": {
+    "message": "Vinyl Lens Settings"
+  },
+  "enterApiKey": {
+    "message": "Please enter API key"
+  },
+  "enterModelName": {
+    "message": "Please enter model name"
+  },
+  "saveSettingsFailed": {
+    "message": "Failed to save settings"
+  },
+  "settingsSaved": {
+    "message": "✓ Settings saved! Using model: $MODEL$",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "testFailedCheckCredentials": {
+    "message": "Test failed - check API key and model name"
+  },
+  "modelNotFound": {
+    "message": "Model \"$MODEL$\" not found. Please enter a correct model name.",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidApiKey": {
+    "message": "Invalid API key. Please enter a correct API key."
+  },
+  "testFailed": {
+    "message": "Test failed: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "testSuccess": {
+    "message": "✓ API key and model \"$MODEL$\" working correctly!",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "geminiApiKeyLabel": {
+    "message": "Google Gemini API Key:"
+  },
+  "apiKeyPlaceholder": {
+    "message": "Enter your Gemini API key"
+  },
+  "geminiModelLabel": {
+    "message": "Gemini Model:"
+  },
+  "modelHelperText": {
+    "message": "e.g. gemini-1.5-flash, gemini-1.5-pro"
+  },
+  "modelPlaceholder": {
+    "message": "gemini-1.5-flash"
+  },
+  "saveSettings": {
+    "message": "Save settings"
+  },
+  "saving": {
+    "message": "Saving..."
+  },
+  "test": {
+    "message": "Test"
+  },
+  "testing": {
+    "message": "Testing..."
+  },
+  "checkingApiKey": {
+    "message": "Checking API key and model settings..."
+  },
+  "extractingMusicInfo": {
+    "message": "Extracting music info from page..."
+  },
+  "googleSearching": {
+    "message": "Searching Google: $QUERY$",
+    "placeholders": {
+      "query": {
+        "content": "$1"
+      }
+    }
+  },
+  "lookingForDiscogs": {
+    "message": "Looking for Discogs page in search results..."
+  },
+  "fetchingDiscogs": {
+    "message": "Fetching Discogs page..."
+  },
+  "analyzingDiscogs": {
+    "message": "Analyzing Discogs page content..."
+  },
+  "extractingDetails": {
+    "message": "Extracting detailed information..."
+  },
+  "processingCompleteMessage": {
+    "message": "Processing complete!"
+  },
+  "unknownError": {
+    "message": "An unknown error occurred."
+  },
+  "apiKeyNotSet": {
+    "message": "Gemini API Key not set. Please set it in the extension options."
+  },
+  "modelNotSelected": {
+    "message": "Gemini model not selected. Please select a model in the extension options."
+  },
+  "modelNotAvailable": {
+    "message": "Selected model \"$MODEL$\" is not available. Please select a different model in the extension options.",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "couldNotExtractInfo": {
+    "message": "Could not extract artist or title from current page."
+  },
+  "googleSearchFailed": {
+    "message": "Failed to search Google: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "noDiscogsUrl": {
+    "message": "No Discogs URL found in Google search results."
+  },
+  "fetchDiscogsFailed": {
+    "message": "Failed to fetch Discogs page: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "offscreenAccessError": {
+    "message": "Could not access offscreen document."
+  },
+  "discogsContentError": {
+    "message": "Could not extract content from Discogs page."
+  },
+  "backgroundScriptError": {
+    "message": "Background Script Error: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "insufficientContent": {
+    "message": "Could not extract sufficient content from page."
+  },
+  "extractionError": {
+    "message": "Extraction error: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "supportLinkText": {
+    "message": "Support Page"
+  }
+}

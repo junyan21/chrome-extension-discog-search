@@ -1,9 +1,12 @@
+import { useI18n } from "../../hooks/useI18n";
+
 interface SearchButtonProps {
   onClick: () => void;
   disabled: boolean;
 }
 
 export const SearchButton = ({ onClick, disabled }: SearchButtonProps) => {
+  const { getMessage } = useI18n();
   return (
     <button
       id="extractAndProcess"
@@ -23,7 +26,7 @@ export const SearchButton = ({ onClick, disabled }: SearchButtonProps) => {
         marginBottom: "15px",
       }}
     >
-      {disabled ? "処理中..." : "音源情報を検索"}
+      {disabled ? getMessage("processing") : getMessage("searchButton")}
     </button>
   );
 };

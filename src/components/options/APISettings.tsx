@@ -4,6 +4,7 @@ import { PasswordInput } from '../common/PasswordInput';
 import { PrimaryButton } from '../common/PrimaryButton';
 import { SecondaryButton } from '../common/SecondaryButton';
 import { ButtonGroup } from '../common/ButtonGroup';
+import { useI18n } from '../../hooks/useI18n';
 
 interface APISettingsProps {
   apiKey: string;
@@ -30,13 +31,15 @@ export const APISettings = ({
   onTest,
   onKeyPress
 }: APISettingsProps) => {
+  const { getMessage } = useI18n();
+
   return (
     <div>
-      <FormField label="Google Gemini API Key:" htmlFor="apiKey">
+      <FormField label={getMessage("geminiApiKeyLabel")} htmlFor="apiKey">
         <PasswordInput
           id="apiKey"
           value={apiKey}
-          placeholder="Enter your Gemini API key"
+          placeholder={getMessage("apiKeyPlaceholder")}
           showPassword={showPassword}
           onTogglePassword={onShowPasswordToggle}
           onChange={onApiKeyChange}
@@ -45,14 +48,14 @@ export const APISettings = ({
       </FormField>
 
       <FormField 
-        label="Gemini Model:" 
+        label={getMessage("geminiModelLabel")} 
         htmlFor="modelInput"
-        helperText="例: gemini-1.5-flash, gemini-1.5-pro など"
+        helperText={getMessage("modelHelperText")}
       >
         <TextInput
           id="modelInput"
           value={model}
-          placeholder="gemini-1.5-flash"
+          placeholder={getMessage("modelPlaceholder")}
           onChange={onModelChange}
           onKeyPress={onKeyPress}
         />
@@ -63,18 +66,18 @@ export const APISettings = ({
           onClick={onSave}
           disabled={isLoading}
           loading={isLoading}
-          loadingText="保存中..."
+          loadingText={getMessage("saving")}
         >
-          設定を保存
+          {getMessage("saveSettings")}
         </PrimaryButton>
         
         <SecondaryButton
           onClick={onTest}
           disabled={isLoading}
           loading={isLoading}
-          loadingText="テスト中..."
+          loadingText={getMessage("testing")}
         >
-          テスト
+          {getMessage("test")}
         </SecondaryButton>
       </ButtonGroup>
     </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { APISettings } from './APISettings';
+import { useI18n } from '../../hooks/useI18n';
 
 export const Options = () => {
   const [apiKey, setApiKey] = useState('');
@@ -7,6 +8,7 @@ export const Options = () => {
   const [status, setStatus] = useState<{message: string, type: 'success' | 'error' | 'info'} | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { getMessage, isJapanese } = useI18n();
 
   useEffect(() => {
     // Load saved API key and model
@@ -32,12 +34,12 @@ export const Options = () => {
 
   const handleSave = () => {
     if (!apiKey.trim()) {
-      showStatus('APIキーを入力してください', 'error');
+      showStatus(getMessage('enterApiKey'), 'error');
       return;
     }
     
     if (!model.trim()) {
-      showStatus('モデル名を入力してください', 'error');
+      showStatus(getMessage('enterModelName'), 'error');
       return;
     }
 
@@ -51,9 +53,9 @@ export const Options = () => {
         setIsLoading(false);
         if (chrome.runtime.lastError) {
           console.error('Storage error:', chrome.runtime.lastError);
-          showStatus('設定の保存に失敗しました', 'error');
+          showStatus(getMessage('saveSettingsFailed'), 'error');
         } else {
-          showStatus(`✓ 設定を保存しました！使用モデル: ${model.trim()}`, 'success');
+          showStatus(getMessage('settingsSaved', model.trim()), 'success');
         }
       });
     } catch (error) {
@@ -65,12 +67,12 @@ export const Options = () => {
 
   const handleTest = async () => {
     if (!apiKey.trim()) {
-      showStatus('APIキーを入力してください', 'error');
+      showStatus(getMessage('enterApiKey'), 'error');
       return;
     }
     
     if (!model.trim()) {
-      showStatus('モデル名を入力してください', 'error');
+      showStatus(getMessage('enterModelName'), 'error');
       return;
     }
 
@@ -87,20 +89,20 @@ export const Options = () => {
       const text = response.text();
       
       if (text) {
-        showStatus(`✓ APIキーとモデル「${model.trim()}」が正常に動作しています！`, 'success');
+        showStatus(getMessage('testSuccess', model.trim()), 'success');
       } else {
-        showStatus('テストが失敗しました - APIキーとモデル名を確認してください', 'error');
+        showStatus(getMessage('testFailedCheckCredentials'), 'error');
       }
     } catch (error) {
       console.error('API test failed:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       
       if (errorMessage.includes('404') || errorMessage.includes('not found')) {
-        showStatus(`モデル「${model.trim()}」が見つかりません。正しいモデル名を入力してください。`, 'error');
+        showStatus(getMessage('modelNotFound', model.trim()), 'error');
       } else if (errorMessage.includes('API key')) {
-        showStatus('APIキーが無効です。正しいAPIキーを入力してください。', 'error');
+        showStatus(getMessage('invalidApiKey'), 'error');
       } else {
-        showStatus(`テストが失敗しました: ${errorMessage}`, 'error');
+        showStatus(getMessage('testFailed', errorMessage), 'error');
       }
     } finally {
       setIsLoading(false);
@@ -120,7 +122,7 @@ export const Options = () => {
       padding: '40px 20px'
     }}>
       <h1 style={{ color: 'var(--text-primary)', marginBottom: '30px', textAlign: 'center' }}>
-        Vinyl Lens Settings
+        {getMessage('optionsPageTitle')}
       </h1>
       
       <APISettings
@@ -152,6 +154,29 @@ export const Options = () => {
           {status.message}
         </div>
       )}
+      
+      <footer style={{
+        marginTop: '40px',
+        paddingTop: '20px',
+        borderTop: '1px solid var(--border, #e2e8f0)',
+        textAlign: 'center'
+      }}>
+        <a 
+          href={isJapanese() 
+            ? 'https://junyan21.github.io/chrome-extension-vinyl-lens/' 
+            : 'https://junyan21.github.io/chrome-extension-vinyl-lens/index-en'
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: 'var(--primary, #8b5cf6)',
+            textDecoration: 'none',
+            fontSize: '0.875rem'
+          }}
+        >
+          {getMessage('supportLinkText')}
+        </a>
+      </footer>
     </div>
   );
 };

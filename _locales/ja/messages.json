@@ -1,0 +1,255 @@
+{
+  "extensionName": {
+    "message": "Vinyl Lens"
+  },
+  "extensionDescription": {
+    "message": "レコードがVinyl限定リリースかどうかをチェックするシンプルなChrome拡張機能。"
+  },
+  "popupTitle": {
+    "message": "Vinyl Lens"
+  },
+  "optionsTitle": {
+    "message": "Vinyl Lens 設定"
+  },
+  "initializing": {
+    "message": "初期化中..."
+  },
+  "noActiveTab": {
+    "message": "アクティブなタブが見つかりません。"
+  },
+  "restrictedPage": {
+    "message": "このページでは拡張機能を使用できません。通常のWebページ（http://またはhttps://）でお試しください。"
+  },
+  "extractingContent": {
+    "message": "ページコンテンツを抽出中..."
+  },
+  "emptyContent": {
+    "message": "抽出されたコンテンツが空です"
+  },
+  "searching": {
+    "message": "検索中です..."
+  },
+  "processingComplete": {
+    "message": "処理完了！ ($TIME$秒)",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "unexpectedError": {
+    "message": "予期しないエラーが発生しました"
+  },
+  "errorPrefix": {
+    "message": "エラー: "
+  },
+  "processing": {
+    "message": "処理中..."
+  },
+  "searchButton": {
+    "message": "音源情報を検索"
+  },
+  "vinylOnlyRelease": {
+    "message": "🎵 VINYL ONLY RELEASE"
+  },
+  "multipleFormats": {
+    "message": "📀 MULTIPLE FORMATS AVAILABLE"
+  },
+  "artist": {
+    "message": "Artist"
+  },
+  "title": {
+    "message": "Title"
+  },
+  "releaseYear": {
+    "message": "Release Year"
+  },
+  "id": {
+    "message": "ID"
+  },
+  "vinylOnly": {
+    "message": "Vinyl Only"
+  },
+  "availableFormats": {
+    "message": "Available Formats"
+  },
+  "goToDiscogs": {
+    "message": "Go to Discogs"
+  },
+  "settingsAriaLabel": {
+    "message": "設定"
+  },
+  "optionsPageTitle": {
+    "message": "Vinyl Lens 設定"
+  },
+  "enterApiKey": {
+    "message": "APIキーを入力してください"
+  },
+  "enterModelName": {
+    "message": "モデル名を入力してください"
+  },
+  "saveSettingsFailed": {
+    "message": "設定の保存に失敗しました"
+  },
+  "settingsSaved": {
+    "message": "✓ 設定を保存しました！使用モデル: $MODEL$",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "testFailedCheckCredentials": {
+    "message": "テストが失敗しました - APIキーとモデル名を確認してください"
+  },
+  "modelNotFound": {
+    "message": "モデル「$MODEL$」が見つかりません。正しいモデル名を入力してください。",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidApiKey": {
+    "message": "APIキーが無効です。正しいAPIキーを入力してください。"
+  },
+  "testFailed": {
+    "message": "テストが失敗しました: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "testSuccess": {
+    "message": "✓ APIキーとモデル「$MODEL$」が正常に動作しています！",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "geminiApiKeyLabel": {
+    "message": "Google Gemini API キー:"
+  },
+  "apiKeyPlaceholder": {
+    "message": "Gemini APIキーを入力"
+  },
+  "geminiModelLabel": {
+    "message": "Gemini モデル:"
+  },
+  "modelHelperText": {
+    "message": "例: gemini-1.5-flash, gemini-1.5-pro など"
+  },
+  "modelPlaceholder": {
+    "message": "gemini-1.5-flash"
+  },
+  "saveSettings": {
+    "message": "設定を保存"
+  },
+  "saving": {
+    "message": "保存中..."
+  },
+  "test": {
+    "message": "テスト"
+  },
+  "testing": {
+    "message": "テスト中..."
+  },
+  "checkingApiKey": {
+    "message": "APIキーとモデル設定を確認中..."
+  },
+  "extractingMusicInfo": {
+    "message": "ページから音楽情報を抽出中..."
+  },
+  "googleSearching": {
+    "message": "Google検索中: $QUERY$",
+    "placeholders": {
+      "query": {
+        "content": "$1"
+      }
+    }
+  },
+  "lookingForDiscogs": {
+    "message": "検索結果からDiscogsページを探しています..."
+  },
+  "fetchingDiscogs": {
+    "message": "Discogsページを取得中..."
+  },
+  "analyzingDiscogs": {
+    "message": "Discogsページの内容を解析中..."
+  },
+  "extractingDetails": {
+    "message": "詳細情報を抽出中..."
+  },
+  "processingCompleteMessage": {
+    "message": "処理が完了しました！"
+  },
+  "unknownError": {
+    "message": "不明なエラーが発生しました。"
+  },
+  "apiKeyNotSet": {
+    "message": "Gemini APIキーが設定されていません。拡張機能のオプションで設定してください。"
+  },
+  "modelNotSelected": {
+    "message": "Geminiモデルが選択されていません。拡張機能のオプションでモデルを選択してください。"
+  },
+  "modelNotAvailable": {
+    "message": "選択されたモデル「$MODEL$」は利用できません。拡張機能のオプションで別のモデルを選択してください。",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
+  "couldNotExtractInfo": {
+    "message": "現在のページからアーティストまたはタイトルを抽出できませんでした。"
+  },
+  "googleSearchFailed": {
+    "message": "Google検索に失敗しました: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "noDiscogsUrl": {
+    "message": "Google検索結果にDiscogsのURLが見つかりませんでした。"
+  },
+  "fetchDiscogsFailed": {
+    "message": "Discogsページの取得に失敗しました: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "offscreenAccessError": {
+    "message": "オフスクリーンドキュメントにアクセスできませんでした。"
+  },
+  "discogsContentError": {
+    "message": "DiscogsページからコンテンツをĂ抽出できませんでした。"
+  },
+  "backgroundScriptError": {
+    "message": "バックグラウンドスクリプトエラー: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "insufficientContent": {
+    "message": "ページから十分なコンテンツを抽出できませんでした。"
+  },
+  "extractionError": {
+    "message": "抽出エラー: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "supportLinkText": {
+    "message": "サポートページ"
+  }
+}

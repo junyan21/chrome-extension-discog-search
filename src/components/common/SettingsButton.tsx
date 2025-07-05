@@ -1,4 +1,5 @@
 import { GearIcon } from '../icons/GearIcon';
+import { useI18n } from '../../hooks/useI18n';
 
 interface SettingsButtonProps {
   onClick: () => void;
@@ -13,6 +14,8 @@ export const SettingsButton = ({
   size = 20, 
   disabled = false 
 }: SettingsButtonProps) => {
+  const { getMessage } = useI18n();
+
   return (
     <button
       onClick={onClick}
@@ -40,7 +43,7 @@ export const SettingsButton = ({
           (e.target as HTMLElement).style.backgroundColor = 'transparent';
         }
       }}
-      aria-label="Settings"
+      aria-label={getMessage("settingsAriaLabel")}
       type="button"
     >
       <GearIcon size={size} />
