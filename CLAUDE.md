@@ -299,3 +299,45 @@ npm run test:visual:ui
 - Direct content script communication minimizes latency
 - Simple DOM extraction avoids complex parsing overhead
 - Minimal dependency tree reduces bundle size and load time
+
+## Logging Guidelines
+
+### Development vs Production Logging
+The project uses a simple approach where all `console.*` statements are automatically removed in production builds by Vite's terser configuration:
+
+- **Development mode** (`npm run dev`): All console logs are displayed
+- **Production build** (`npm run build`): All console logs are removed automatically
+
+### Implementation Rules
+1. **Use `console.*` directly** for all logging needs
+2. **No custom logger needed** - Vite handles the removal in production
+3. **No sensitive data** should be logged (API keys, user data, etc.)
+
+### Example Implementation
+```typescript
+// All files - using console directly
+console.log('[Background] Processing request');
+console.error('[Background] Failed to process:', error);
+console.warn('[Content] Warning message');
+console.info('[Options] Info message');
+```
+
+### Production Build Configuration
+The `vite.config.ts` includes terser configuration to automatically remove console logs in production:
+```typescript
+build: {
+  minify: 'terser',
+  terserOptions: {
+    compress: {
+      drop_console: true,    // Removes all console.* calls
+      drop_debugger: true    // Removes debugger statements
+    }
+  }
+}
+```
+
+This configuration ensures that:
+- All `console.log`, `console.error`, `console.warn`, etc. are removed from production builds
+- Development builds retain all logging for debugging
+- No manual log level management is needed
+- Bundle size is optimized by removing unnecessary logging code

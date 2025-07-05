@@ -10,6 +10,13 @@ export default defineConfig({
     }
   },
   build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.log in production
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       input: {
         main: 'index.html',
