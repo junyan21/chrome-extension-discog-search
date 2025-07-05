@@ -120,7 +120,7 @@ ${content}`;
             return;
           }
 
-          const searchQuery = `discogs ${parsedInitialJson.artist || ''} ${parsedInitialJson.title || ''}`.trim();
+          const searchQuery = `site:discogs.com ${parsedInitialJson.artist || ''} ${parsedInitialJson.title || ''}`.trim();
           console.log('[Background] Google Search Query:', searchQuery);
           await sendProgress(`Google検索中: ${searchQuery}`);
 
